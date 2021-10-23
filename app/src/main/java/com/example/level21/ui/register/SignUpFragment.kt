@@ -54,7 +54,6 @@ class SignUpFragment : Fragment() {
         val pass = binding.signUpViewPassEt.text.toString()
         if (viewModel.validChecker(email,
             pass)){
-            viewModel.saveLoginData(binding.signUpViewRemmChBx.isChecked)
             viewModel.goToProfile()
         } else {
             if (!viewModel.isValidMail(email)){
@@ -68,5 +67,10 @@ class SignUpFragment : Fragment() {
 
     private fun navigate(direction: NavDirections) {
         findNavController().navigate(direction)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.saveLoginData(binding.signUpViewRemmChBx.isChecked)
     }
 }

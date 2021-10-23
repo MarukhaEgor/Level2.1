@@ -2,23 +2,21 @@ package com.example.level21.ui.register
 
 import android.util.Patterns
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
 import com.example.level21.data.LoginModel
 import com.example.level21.data.Repository
-import com.example.level21.databinding.SignUpFragmentBinding
 import com.example.level21.utils.Constants
 import com.example.level21.utils.SingleLiveEvent
 import org.koin.core.KoinComponent
 
 class SignUpViewModel(private val repository: Repository) : ViewModel(), KoinComponent {
+
     private val _navigationEvent = SingleLiveEvent<NavDirections>()
     val navigationEvent: LiveData<NavDirections> = _navigationEvent
 
-    private var name: String = ""
-    private var secondName: String = ""
-
+    private lateinit var name: String
+    private lateinit var secondName: String
 
     fun goToProfile() {
         _navigationEvent.value =
@@ -57,7 +55,4 @@ class SignUpViewModel(private val repository: Repository) : ViewModel(), KoinCom
         }
         return false
     }
-
-
-
 }

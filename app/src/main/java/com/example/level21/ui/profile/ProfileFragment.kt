@@ -7,17 +7,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.level21.R
+import com.example.level21.databinding.ProfileFragmentBinding
+import com.example.level21.ui.register.SignUpViewModel
+import org.koin.android.ext.android.inject
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var viewModel: ProfileViewModel
+    private val viewModel: ProfileViewModel by inject()
+    private lateinit var binding: ProfileFragmentBinding
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setObservers()
+        viewModel.setDataToProfile()
+    }
+
+    private fun setObservers() {
+        viewModel.loginModel.observe(viewLifecycleOwner,{
+            (it.name + " " + it.secondName).also { binding.profileActivityNameTv.text = it }
+        })
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.profile_fragment, container, false)
+    ): View {
+        binding = ProfileFragmentBinding.inflate(inflater)
+        return binding.root
     }
 
 
