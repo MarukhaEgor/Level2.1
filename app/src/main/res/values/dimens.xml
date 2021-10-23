@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_paddings_16">16dp</dimen>
+    <dimen name="rnd_social_btn_size">50dp</dimen>
+    <dimen name="border_with">2dp</dimen>
+    <dimen name="btn_elevation">0dp</dimen>
+    <dimen name="edit_btn_height">40dp</dimen>
+    <dimen name="chBx_correct_padding">-8dp</dimen>
+    <dimen name="txtSize_24">24sp</dimen>
+    <dimen name="txtSize_18">18sp</dimen>
+    <dimen name="txtSize_14">14sp</dimen>
+    <dimen name="txtSize_12">12sp</dimen>
+    <dimen name="signUp_activity_regBtn_height">55dp</dimen>
+    <dimen name="pass_text_input_layout_mrgTop">40dp</dimen>
+    <dimen name="editText_register_padding_start">-16dp</dimen>
+    <dimen name="profile_activity_btn_height">48dp</dimen>
+</resources>

@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Level2.1</string>
+    <string name="profile_view_settings">Настройки</string>
+    <string name="profile_view_name">Lucile Alvarado</string>
+    <string name="profile_view_profession">Graphic designer</string>
+    <string name="profile_view_adress">5295 Gaylord Walks Apk. 110</string>
+    <string name="profile_view_edit_btn">Редактировать профиль</string>
+    <string name="profile_view_contacts_btn">Мои контакты</string>
+    <string name="e_mail_hint">E-mail</string>
+    <string name="password_hint">Пароль</string>
+    <string name="reg_view_let_s_get_acquainted">Let\'s get acquainted</string>
+    <string name="reg_view_fillOut">Заполните данные!</string>
+    <string name="signUp_chBx_text">Запомнить меня</string>
+    <string name="signUp_activ_regBtn_txt">регистрация</string>
+    <string name="reg_view_msg_terms">By clicking Register you agree to our Terms \n and Conditions</string>
+    <string name="reg_activity_have_acc_msg">Уже зарегистрированы?</string>
+    <string name="reg_activity_sing_up_txtBtn">Регистрация</string>
+    <string name="wrong_pass_msg">Короткий или пустой пароль!</string>
+    <string name="wrong_mail_msg">Некорректный e-mail!</string>
+</resources>

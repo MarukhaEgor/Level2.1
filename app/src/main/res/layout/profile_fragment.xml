@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.profile.ProfileFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/topCl"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/main_background"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bottomCl"
+            app:layout_constraintHeight_percent="0.5">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/profileActivitySettingsTv"
+                style="@style/settings_label_style"
+                android:text="@string/profile_view_settings"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ProfileActivityAvatarImv"
+                style="@style/profile_avatar"
+                android:src="@drawable/img"
+                app:layout_constraintHeight_percent="0.50"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profileActivitySettingsTv"  />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/profileActivityNameTv"
+                style="@style/profile_name_Style"
+                android:text="@string/profile_view_name"
+                app:layout_constraintBottom_toTopOf="@+id/profileActivityProffTv"
+                app:layout_constraintEnd_toEndOf="@+id/ProfileActivityAvatarImv"
+                app:layout_constraintStart_toStartOf="@+id/ProfileActivityAvatarImv"
+                app:layout_constraintTop_toBottomOf="@+id/ProfileActivityAvatarImv" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/profileActivityProffTv"
+                style="@style/profile_data_style"
+                android:text="@string/profile_view_profession"
+                app:layout_constraintBottom_toTopOf="@+id/profileActivityAdrsTv"
+                app:layout_constraintEnd_toEndOf="@+id/profileActivityNameTv"
+                app:layout_constraintStart_toStartOf="@+id/profileActivityNameTv"
+                app:layout_constraintTop_toBottomOf="@+id/profileActivityNameTv" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/profileActivityAdrsTv"
+                style="@style/profile_data_style"
+                android:text="@string/profile_view_adress"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/profileActivityNameTv"
+                app:layout_constraintStart_toStartOf="@+id/profileActivityNameTv"
+                app:layout_constraintTop_toBottomOf="@+id/profileActivityProffTv" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottomCl"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.5"
+            app:layout_constraintTop_toBottomOf="@+id/topCl">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/profileActivityEditProfileBtn"
+                style="@style/main_btn_with_border_style"
+                android:letterSpacing="0"
+                android:text="@string/profile_view_edit_btn"
+                app:layout_constraintBottom_toTopOf="@id/profileActivityViewContactBtn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/profileActivityViewContactBtn"
+                style="@style/profile_activity_btn"
+                android:text="@string/profile_view_contacts_btn"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/profileActivityFbFab"
+                style="@style/profile_soc_btn"
+                android:src="@drawable/fb_fab"
+                app:layout_constraintBottom_toTopOf="@+id/profileActivityEditProfileBtn"
+                app:layout_constraintEnd_toStartOf="@+id/profileActivityLinkInFab"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/bottomCl" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/profileActivityLinkInFab"
+                style="@style/profile_soc_btn"
+                android:src="@drawable/linkin_fab"
+                app:layout_constraintBottom_toBottomOf="@+id/profileActivityFbFab"
+                app:layout_constraintEnd_toStartOf="@+id/ProfileActivityVkFab"
+                app:layout_constraintStart_toEndOf="@+id/profileActivityFbFab" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/ProfileActivityVkFab"
+                style="@style/profile_soc_btn"
+                android:src="@drawable/vk_fab"
+                app:layout_constraintBottom_toBottomOf="@+id/profileActivityLinkInFab"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/profileActivityLinkInFab" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
