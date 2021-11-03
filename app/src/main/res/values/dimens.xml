@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="rnd_btn_radius">10dp</dimen>
     <dimen name="main_paddings_16">16dp</dimen>
     <dimen name="rnd_social_btn_size">50dp</dimen>
     <dimen name="border_with">2dp</dimen>

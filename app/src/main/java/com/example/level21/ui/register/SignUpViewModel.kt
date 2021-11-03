@@ -4,8 +4,8 @@ import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
-import com.example.level21.data.LoginModel
-import com.example.level21.data.Repository
+import com.example.level21.data.model.LoginModel
+import com.example.level21.data.repository.Repository
 import com.example.level21.utils.Constants
 import com.example.level21.utils.SingleLiveEvent
 import org.koin.core.KoinComponent
@@ -15,8 +15,8 @@ class SignUpViewModel(private val repository: Repository) : ViewModel(), KoinCom
     private val _navigationEvent = SingleLiveEvent<NavDirections>()
     val navigationEvent: LiveData<NavDirections> = _navigationEvent
 
-    private lateinit var name: String
-    private lateinit var secondName: String
+    private var name: String? = null
+    private var secondName: String? = null
 
     fun goToProfile() {
         _navigationEvent.value =

@@ -1,12 +1,10 @@
 package com.example.level21.ui.register
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.example.level21.R
@@ -44,23 +42,23 @@ class SignUpFragment : Fragment() {
     }
 
     private fun setOnClickListeners() {
-        binding.BtnRegister.setOnClickListener {
+        binding.btnRegister.setOnClickListener {
             goToProfile()
         }
     }
 
     private fun goToProfile(){
-        val email = binding.signUpViewEmailEt.text.toString()
-        val pass = binding.signUpViewPassEt.text.toString()
+        val email = binding.etSignUpViewEmail.text.toString()
+        val pass = binding.etSignUpViewPass.text.toString()
         if (viewModel.validChecker(email,
             pass)){
             viewModel.goToProfile()
         } else {
             if (!viewModel.isValidMail(email)){
-                binding.signUpViewEmailTIL.error = getString(R.string.wrong_mail_msg)
+                binding.tilSignUpViewEmail.error = getString(R.string.wrong_mail_msg)
             }
             if (!viewModel.isValidPass(pass)){
-                binding.signUpViewPassTIL.error = getString(R.string.wrong_pass_msg)
+                binding.tilSignUpViewPass.error = getString(R.string.wrong_pass_msg)
             }
         }
     }
@@ -71,6 +69,6 @@ class SignUpFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        viewModel.saveLoginData(binding.signUpViewRemmChBx.isChecked)
+        viewModel.saveLoginData(binding.chBxSignUpView.isChecked)
     }
 }

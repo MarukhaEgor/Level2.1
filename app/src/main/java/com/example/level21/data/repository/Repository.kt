@@ -1,7 +1,8 @@
-package com.example.level21.data
+package com.example.level21.data.repository
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.level21.data.model.LoginModel
 import com.example.level21.utils.Constants
 import org.koin.core.KoinComponent
 
@@ -27,7 +28,7 @@ class Repository(context: Context): KoinComponent {
         return sharedPref.getBoolean(Constants.SP_IS_REMEMBER,false)
     }
 
-    fun getDataFromSharedPrefs(): LoginModel{
+    fun getDataFromSharedPrefs(): LoginModel {
         val name = sharedPref.getString(Constants.SP_NAME,"")
         val secondName = sharedPref.getString(Constants.SP_SECOND_NAME,"")
         return LoginModel(
