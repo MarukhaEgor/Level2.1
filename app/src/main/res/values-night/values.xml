@@ -5,7 +5,7 @@
         <attr name="paddings" format="dimension" />
         <attr name="height" format="dimension"/>
         <attr name="radius" format="float"/>
-        <attr name="srcCompat"/>
+        <attr name="srcCompat" format="integer"/>
         <attr name="label" format="string"/>
     </declare-styleable>
 </resources>

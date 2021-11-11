@@ -1,6 +1,7 @@
 package com.example.level21
 
 import android.app.Application
+import com.example.level21.di.contactsViewModel
 import com.example.level21.di.profileViewModel
 import com.example.level21.di.repository
 import com.example.level21.di.signUpViewModel
@@ -16,7 +17,7 @@ class App: Application() {
     private fun koinStart() {
         startKoin {
             androidContext(this@App)
-            modules(signUpViewModel, repository, profileViewModel)
+            modules(signUpViewModel, repository, profileViewModel, contactsViewModel)
         }
     }
 }

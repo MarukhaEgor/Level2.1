@@ -9,7 +9,11 @@
         android:id="@+id/profileFragment"
         android:name="com.example.level21.ui.profile.ProfileFragment"
         android:label="profile_fragment"
-        tools:layout="@layout/profile_fragment" />
+        tools:layout="@layout/profile_fragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.level21.ui.register.SignUpFragment"
@@ -19,4 +23,8 @@
             android:id="@+id/action_signUpFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="com.example.level21.ui.contacts.ContactsFragment"
+        android:label="ContactsFragment" />
 </navigation>

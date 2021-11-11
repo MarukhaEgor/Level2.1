@@ -13,7 +13,6 @@ import kotlin.math.roundToInt
 
 private const val DEF_STYLE_RES = R.style.CustomButton
 
-
 class CustomButton @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null

@@ -1,28 +1,29 @@
 package com.example.level21.ui.contacts
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.level21.R
+import com.example.level21.databinding.ContactsFragmentBinding
+import org.koin.android.ext.android.inject
 
 class ContactsFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = ContactsFragment()
-    }
-
-    private lateinit var viewModel: ContactsViewModel
+    private val viewModel: ContactsViewModel by inject()
+    private lateinit var binding: ContactsFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.contacts_fragment, container, false)
+    ): View {
+        binding = ContactsFragmentBinding.inflate(inflater)
+        return binding.root
     }
 
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.initRV()
+    }
 
 }

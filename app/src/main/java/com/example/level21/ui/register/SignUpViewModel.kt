@@ -23,12 +23,12 @@ class SignUpViewModel(private val repository: Repository) : ViewModel(), KoinCom
             SignUpFragmentDirections.actionSignUpFragmentToProfileFragment()
     }
 
-    fun saveLoginData(chkBoxResult: Boolean){
+    fun saveLoginData(chkBoxResult: Boolean) {
         saveLoginData(LoginModel(name = name, secondName = secondName))
         repository.saveState(chkBoxResult)
     }
 
-    fun isAutoLogin(): Boolean{
+    fun isAutoLogin(): Boolean {
         return repository.getState()
     }
 
@@ -41,7 +41,10 @@ class SignUpViewModel(private val repository: Repository) : ViewModel(), KoinCom
     }
 
     fun isValidMail(email: String): Boolean {
-        if (email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches() && email.contains(".")) {
+        if (email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches() && email.contains(
+                "."
+            )
+        ) {
             email.substring(0, email.indexOf(".")).also { name = it }
             email.substring(email.indexOf(".") + 1, email.indexOf("@")).also { secondName = it }
             return true
