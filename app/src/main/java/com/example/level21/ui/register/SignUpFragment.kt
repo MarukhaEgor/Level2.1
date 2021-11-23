@@ -1,14 +1,22 @@
 package com.example.level21.ui.register
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.example.level21.R
 import com.example.level21.databinding.SignUpFragmentBinding
+import com.example.level21.utils.Validator
 import org.koin.android.ext.android.inject
 
 class SignUpFragment : Fragment() {
@@ -18,7 +26,7 @@ class SignUpFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if (viewModel.isAutoLogin()){
+        if (viewModel.isAutoLogin()) {
             navigate(SignUpFragmentDirections.actionSignUpFragmentToProfileFragment())
         }
     }
@@ -47,17 +55,20 @@ class SignUpFragment : Fragment() {
         }
     }
 
-    private fun goToProfile(){
+    private fun goToProfile() {
         val email = binding.etSignUpViewEmail.text.toString()
         val pass = binding.etSignUpViewPass.text.toString()
-        if (viewModel.validChecker(email,
-            pass)){
+        if (viewModel.validChecker(
+                email,
+                pass
+            )
+        ) {
             viewModel.goToProfile()
         } else {
-            if (!viewModel.isValidMail(email)){
+            if (!Validator.isValidMail(email)) {
                 binding.tilSignUpViewEmail.error = getString(R.string.wrong_mail_msg)
             }
-            if (!viewModel.isValidPass(pass)){
+            if (!Validator.isValidPass(pass)) {
                 binding.tilSignUpViewPass.error = getString(R.string.wrong_pass_msg)
             }
         }

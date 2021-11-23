@@ -17,4 +17,15 @@
     <string name="reg_activity_sing_up_txtBtn">Sign in</string>
     <string name="wrong_pass_msg">Short or empty pass!</string>
     <string name="wrong_mail_msg">Wrong e-mail!</string>
+    <string name="username_hint">Username</string>
+    <string name="career_hint">Career</string>
+    <string name="email_placeholder">name@gmail.com</string>
+    <string name="phone_hint">Phone</string>
+    <string name="phone_placeholder">(123)-456-7890)</string>
+    <string name="address_hint">Address</string>
+    <string name="data_paceholder">01/01/1900</string>
+    <string name="btn_save_txt">SAVE</string>
+    <string name="tv_title_add_contact_fragment">Add contact</string>
+    <string name="tv_contacts_title">Contacts</string>
+    <string name="tvBtn_add_contact">Add contacts</string>
 </resources>

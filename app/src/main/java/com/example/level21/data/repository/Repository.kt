@@ -2,7 +2,7 @@ package com.example.level21.data.repository
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.example.level21.data.model.LoginModel
+import com.example.level21.data.models.LoginModel
 import com.example.level21.utils.Constants
 import org.koin.core.KoinComponent
 

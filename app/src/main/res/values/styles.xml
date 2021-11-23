@@ -89,7 +89,20 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColorHint">@color/main_text_color</item>
-        <item name="android:paddingStart">@dimen/editText_register_padding_start</item>
+        <item name="android:paddingStart">@dimen/editText_padding_start</item>
+    </style>
+
+    <style name="editText_dialog_fragment" parent="TextAppearance.AppCompat">
+        <item name="hintTextColor">@color/main_text_color</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
+        <item name="expandedHintEnabled">false</item>
+        <item name="boxStrokeColor">@color/main_text_color</item>
+        <item name="android:textSize">@dimen/txtSize_14</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColorHint">@color/main_text_color</item>
+        <item name="android:paddingStart">@dimen/editText_padding_start</item>
     </style>
 
     <style name="signUp_lets_get_textView">

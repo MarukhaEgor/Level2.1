@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
-import com.example.level21.data.model.LoginModel
+import com.example.level21.data.models.LoginModel
 import com.example.level21.data.repository.Repository
 import com.example.level21.utils.SingleLiveEvent
 import org.koin.core.KoinComponent

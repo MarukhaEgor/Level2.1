@@ -1,10 +1,16 @@
 package com.example.level21.ui.profile
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.example.level21.databinding.ProfileFragmentBinding
@@ -15,6 +21,15 @@ class ProfileFragment : Fragment() {
     private val viewModel: ProfileViewModel by inject()
     private lateinit var binding: ProfileFragmentBinding
 
+    private val requestPermission =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                viewModel.viewContacts()
+            } else {
+                Toast.makeText(requireContext(), "Разрешение нужно", Toast.LENGTH_LONG).show()
+            }
+        }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setObservers()
@@ -24,7 +39,15 @@ class ProfileFragment : Fragment() {
 
     private fun setListeners() {
         binding.profileActivityViewContactBtn.setOnClickListener {
-            viewModel.viewContacts()
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.READ_CONTACTS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                requestPermission.launch(Manifest.permission.READ_CONTACTS)
+            } else {
+                viewModel.viewContacts()
+            }
         }
     }
 

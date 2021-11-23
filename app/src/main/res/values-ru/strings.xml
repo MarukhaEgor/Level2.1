@@ -17,4 +17,15 @@
     <string name="reg_activity_sing_up_txtBtn">Регистрация</string>
     <string name="wrong_pass_msg">Короткий или пустой пароль!</string>
     <string name="wrong_mail_msg">Некорректный e-mail!</string>
+    <string name="username_hint">Имя</string>
+    <string name="career_hint">Профессия</string>
+    <string name="email_placeholder">name@gmail.com</string>
+    <string name="phone_hint">Телефон</string>
+    <string name="phone_placeholder">(123)-456-7890)</string>
+    <string name="address_hint">Адрес</string>
+    <string name="data_paceholder">01/01/1900</string>
+    <string name="btn_save_txt">СОХРАНИТЬ</string>
+    <string name="tv_title_add_contact_fragment">Добавить контакт</string>
+    <string name="tv_contacts_title">Контакты</string>
+    <string name="tvBtn_add_contact">Добавить контакт</string>
 </resources>

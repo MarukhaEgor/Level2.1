@@ -7,10 +7,11 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.level21.R
+import com.example.level21.data.models.ContactsModel
 import com.example.level21.utils.DiffUtils
 
-class Adapter(private val itemClickListener: ItemClickListener) :
-    ListAdapter<String, Adapter.ContactsViewHolder>(DiffUtils()) {
+class Adapter(private val itemClickListener: ItemClickListener, private var rvList: MutableList<ContactsModel>?) :
+    ListAdapter<ContactsModel, Adapter.ContactsViewHolder>(DiffUtils()) {
 
     inner class ContactsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val delBtn: ImageView = view.findViewById(R.id.ivDelBtn) as ImageView
@@ -26,6 +27,13 @@ class Adapter(private val itemClickListener: ItemClickListener) :
         holder.delBtn.setOnClickListener {
             itemClickListener.onClick(holder.adapterPosition)
         }
+    }
+
+    fun deleteItem(pos: Int) {
+        val list = rvList?.toMutableList()
+        list?.removeAt(pos)
+        rvList = list
+        submitList(rvList)
     }
 
     interface ItemClickListener {

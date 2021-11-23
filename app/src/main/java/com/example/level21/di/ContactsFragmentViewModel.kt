@@ -5,5 +5,5 @@ import com.example.level21.ui.profile.ProfileViewModel
 import org.koin.dsl.module
 
 val contactsViewModel = module {
-    single { ContactsViewModel() }
+    single { ContactsViewModel(get()) }
 }
