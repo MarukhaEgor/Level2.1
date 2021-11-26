@@ -5,4 +5,5 @@ object Constants {
     const val SP_NAME = "NAME"
     const val SP_SECOND_NAME = "SP_SECOND_NAME"
     const val PASS_MIN_LENGTH = 7
+    const val DATABASE_NAME = "Contacts database"
 }

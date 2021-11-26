@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.level21.data.db.entity.ContactsEntity
 import com.example.level21.data.models.ContactsModel
 import com.example.level21.databinding.ContactsFragmentBinding
 import com.example.level21.ui.contacts.adapter.Adapter
@@ -19,18 +20,18 @@ class ContactsFragment : Fragment() {
     private val viewModel: ContactsViewModel by inject()
     private lateinit var binding: ContactsFragmentBinding
 
-    private val rvList: MutableList<ContactsModel>? by lazy{
-        getContactList()
-    }
-
     private val rvAdapter: Adapter by lazy {
         Adapter(
             itemClickListener = object : Adapter.ItemClickListener {
                 override fun onClick(pos: Int) {
                     rvAdapter.deleteItem(pos)
                 }
-            }, rvList = rvList
+            }, requireContext()
         )
+    }
+
+    private val rvList: List<ContactsEntity>? by lazy {
+        getContactList()
     }
 
     override fun onCreateView(
@@ -38,24 +39,31 @@ class ContactsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = ContactsFragmentBinding.inflate(inflater)
+//        viewModel.initDB()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setObservers()
-        viewModel.initList()
+
+        viewModel.getAll()
+        //rvAdapter.setListData(getContactList() as ArrayList<ContactsEntity>)
         initRv()
-        rvAdapter.submitList(rvList)
+        setObservers()
+
+
     }
 
-    private fun getContactList(): MutableList<ContactsModel>? {
-        return viewModel.getList()?.toMutableList()
+
+    private fun getContactList(): List<ContactsEntity>? {
+        return viewModel.getAll()
     }
 
     private fun setObservers() {
-        viewModel.contactList.observe(viewLifecycleOwner, {
-            binding.rvContactsList.adapter = rvAdapter
+        viewModel.liveData.observe(viewLifecycleOwner, {
+            rvAdapter.setListData(it as ArrayList<ContactsEntity>)
+            rvAdapter.submitList(rvList)
+            println(it)
         })
     }
 

@@ -2,18 +2,25 @@ package com.example.level21.data.repository
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.provider.ContactsContract
 import android.provider.ContactsContract.CommonDataKinds.Phone.*
+import androidx.lifecycle.LiveData
+import com.example.level21.data.db.ContactsDataBase
+import com.example.level21.data.db.dao.ContactsDao
+import com.example.level21.data.db.entity.ContactsEntity
 import com.example.level21.data.models.ContactsModel
 import org.koin.core.KoinComponent
 
-class ContactsRepository(private val context: Context) : KoinComponent {
+class ContactsRepository(
+    private val context: Context,
+    private val db: ContactsDataBase
+) :
+    KoinComponent {
 
     private var cols = listOf(
         DISPLAY_NAME,
         NUMBER,
         PHOTO_URI,
-        ContactsContract.Contacts._ID
+        _ID
     ).toTypedArray()
 
     @SuppressLint("Range")
@@ -42,4 +49,17 @@ class ContactsRepository(private val context: Context) : KoinComponent {
         contacts?.close()
         return contactList
     }
+
+    fun getcontactOne(): LiveData<ContactsEntity?> {
+        return db.coordinatesDao().getContactById(1)
+    }
+
+    suspend fun insertContact(contact: ContactsEntity){
+        db.coordinatesDao().insertContact(contact)
+    }
+
+    fun getContactList(): List<ContactsEntity>? {
+        return db.coordinatesDao().getAllContacts()
+    }
+
 }

@@ -14,7 +14,7 @@ class App: Application() {
     private fun koinStart() {
         startKoin {
             androidContext(this@App)
-            modules(signUpViewModel, repository, profileViewModel, contactsViewModel, contactsRepository)
+            modules(appModules)
         }
     }
 }

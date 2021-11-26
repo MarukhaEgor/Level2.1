@@ -7,6 +7,6 @@ import org.koin.dsl.module
 
 val contactsRepository: Module = module {
     single {
-        ContactsRepository(androidContext())
+        ContactsRepository(androidContext(), get())
     }
 }

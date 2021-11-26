@@ -32,7 +32,7 @@
         app:layout_constraintEnd_toStartOf="@id/ivDelBtn"/>
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvCompany"
+        android:id="@+id/tvCarrier"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:lines="1"
