@@ -13,53 +13,40 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 
-class ContactsViewModel(private val repository: ContactsRepository) : CoroutineViewModel(), KoinComponent {
-
-//    private var _contactList : LiveData<List<ContactsEntity>?>? = null
-//    val contactList : LiveData<List<ContactsEntity>?>? = _contactList
+class ContactsViewModel(private val repository: ContactsRepository) : CoroutineViewModel(),
+    KoinComponent {
 
     private val _liveData = MutableLiveData<List<ContactsEntity>>()
 
     val liveData: LiveData<List<ContactsEntity>>
         get() = _liveData
 
-    fun initDB() {
-        initBase()
-    }
+    private var contactsListSize = 0
 
-    private fun initBase() {
-        initDataBase(repository.readContacts())
-    }
-
-    private fun initDataBase(contactList: MutableList<ContactsModel>) {
-
-        for (i in 0 until contactList.size) {
-            val contact = ContactsEntity(
-                id = i,
-                userName = contactList[i].name,
-                phone = contactList[i].number,
-                avatar = contactList[i].image,
-                career = "",
-                address = "",
-                birthDay = "",
-                email = ""
-            )
-            insertContact(contact)
-        }
-        getAll()
-    }
-
-    fun getAll() : List<ContactsEntity>?{
-        scope.launch{
+    fun getAllContacts(): List<ContactsEntity>? {
+        scope.launch {
             _liveData.postValue(getAllUsers())
         }
         return _liveData.value
+    }
+
+    fun isDataBaseEmpty(): Boolean{
+        scope.launch {
+            contactsListSize = repository.getFirstContact().size
+        }
+        if (contactsListSize > 0 ) return true
+        return false
     }
 
     private fun getAllUsers(): List<ContactsEntity>? {
         return repository.getContactList()
     }
 
+    fun deleteItem(contact: ContactsEntity){
+        scope.launch {
+            repository.deleteContact(contact)
+        }
+    }
 
     private fun insertContact(contact: ContactsEntity) {
         scope.launch {
@@ -67,8 +54,24 @@ class ContactsViewModel(private val repository: ContactsRepository) : CoroutineV
         }
     }
 
-//    fun getList(): MutableList<ContactsEntity>? {
-//        return contactList.value
-//    }
+    fun initBase() {
+        initDataBase(repository.readContacts())
+    }
 
+    private fun initDataBase(contactList: MutableList<ContactsModel>) {
+
+        for (it in 0 until contactList.size) {
+            val contact = ContactsEntity(
+                id = it,
+                userName = contactList[it].name,
+                phone = contactList[it].number,
+                avatar = contactList[it].image,
+                career = "",
+                address = "",
+                birthDay = "",
+                email = ""
+            )
+            insertContact(contact)
+        }
+    }
 }

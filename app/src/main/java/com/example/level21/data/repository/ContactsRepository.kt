@@ -5,7 +5,6 @@ import android.content.Context
 import android.provider.ContactsContract.CommonDataKinds.Phone.*
 import androidx.lifecycle.LiveData
 import com.example.level21.data.db.ContactsDataBase
-import com.example.level21.data.db.dao.ContactsDao
 import com.example.level21.data.db.entity.ContactsEntity
 import com.example.level21.data.models.ContactsModel
 import org.koin.core.KoinComponent
@@ -50,16 +49,20 @@ class ContactsRepository(
         return contactList
     }
 
-    fun getcontactOne(): LiveData<ContactsEntity?> {
-        return db.coordinatesDao().getContactById(1)
+    fun getFirstContact(): List<ContactsEntity> {
+        return db.coordinatesDao().getRawList()
     }
 
-    suspend fun insertContact(contact: ContactsEntity){
+    fun insertContact(contact: ContactsEntity){
         db.coordinatesDao().insertContact(contact)
     }
 
     fun getContactList(): List<ContactsEntity>? {
         return db.coordinatesDao().getAllContacts()
+    }
+
+    suspend fun deleteContact(contact: ContactsEntity) {
+        db.coordinatesDao().deleteContact(contact)
     }
 
 }

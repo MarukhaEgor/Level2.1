@@ -2,7 +2,6 @@ package com.example.level21.ui.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
 import com.example.level21.data.db.entity.ContactsEntity
 import com.example.level21.data.models.ContactsModel
@@ -31,35 +30,8 @@ class ProfileViewModel(
     }
 
     fun viewContacts() {
-        initBase()
         _navigationEvent.value = ProfileFragmentDirections.actionProfileFragmentToContactsFragment()
     }
 
-    private fun initBase() {
-        initDataBase(repositoryContact.readContacts())
-    }
-
-    private fun initDataBase(contactList: MutableList<ContactsModel>) {
-
-        for (i in 0 until contactList.size) {
-            val contact = ContactsEntity(
-                id = i,
-                userName = contactList[i].name,
-                phone = contactList[i].number,
-                avatar = contactList[i].image,
-                career = "",
-                address = "",
-                birthDay = "",
-                email = ""
-            )
-            insertContact(contact)
-        }
-    }
-
-    private fun insertContact(contact: ContactsEntity) {
-        scope.launch {
-            repositoryContact.insertContact(contact)
-        }
-    }
 
 }
