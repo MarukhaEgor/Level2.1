@@ -28,4 +28,5 @@
     <string name="tv_title_add_contact_fragment">Добавить контакт</string>
     <string name="tv_contacts_title">Контакты</string>
     <string name="tvBtn_add_contact">Добавить контакт</string>
+    <string name="date_of_birth_hint">Дата рождения</string>
 </resources>
