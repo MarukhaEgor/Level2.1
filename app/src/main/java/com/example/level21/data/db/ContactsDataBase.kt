@@ -10,15 +10,21 @@ import com.example.level21.utils.Constants
 
 @Database(entities = [ContactsEntity::class], version = 1, exportSchema = false)
 abstract class ContactsDataBase : RoomDatabase() {
+
     abstract fun coordinatesDao(): ContactsDao
+
     companion object {
+        @Volatile
+        private var INSTANCE: ContactsDataBase? = null
         fun getDataBase(context: Context): ContactsDataBase {
-            synchronized(this) {
-                return Room.databaseBuilder(
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
                     context.applicationContext,
                     ContactsDataBase::class.java,
                     Constants.DATABASE_NAME
                 ).build()
+                INSTANCE = instance
+                instance
             }
         }
     }

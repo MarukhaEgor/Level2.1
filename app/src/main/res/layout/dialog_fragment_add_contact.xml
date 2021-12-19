@@ -113,7 +113,7 @@
             app:layout_constraintStart_toStartOf="@+id/tilCareerAddContact"
             app:layout_constraintEnd_toEndOf="@+id/tilCareerAddContact"
             android:layout_marginTop="@dimen/txtSize_24"
-            app:hintTextColor="@color/main_text_color"
+            app:placeholderTextColor="@color/main_text_color"
             app:placeholderText="@string/email_placeholder">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -135,7 +135,7 @@
             app:layout_constraintStart_toStartOf="@+id/tilEmailAddContact"
             app:layout_constraintEnd_toEndOf="@+id/tilEmailAddContact"
             android:layout_marginTop="@dimen/txtSize_24"
-            app:hintTextColor="@color/main_text_color"
+            app:placeholderTextColor="@color/main_text_color"
             app:placeholderText="@string/phone_placeholder">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -144,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:inputType="phone"
-                android:textColor="@color/main_text_color"
+                android:textColor="@color/black"
                 android:textCursorDrawable="@null"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -164,7 +164,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:inputType="textMultiLine"
-                android:textColor="@color/main_text_color"
+                android:textColor="@color/black"
                 android:textCursorDrawable="@null"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -176,7 +176,7 @@
             app:layout_constraintStart_toStartOf="@+id/tilAddressAddContact"
             app:layout_constraintEnd_toEndOf="@+id/tilAddressAddContact"
             android:layout_marginTop="@dimen/txtSize_24"
-            app:hintTextColor="@color/main_text_color"
+            app:placeholderTextColor="@color/main_text_color"
             app:placeholderText="@string/data_paceholder">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -185,11 +185,12 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:inputType="date"
-                android:textColor="@color/main_text_color"
+                android:textColor="@color/black"
                 android:textCursorDrawable="@null"/>
         </com.google.android.material.textfield.TextInputLayout>
         
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/profile_activity_btn"

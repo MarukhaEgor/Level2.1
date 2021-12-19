@@ -30,5 +30,16 @@
         <action
             android:id="@+id/action_contactsFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_contactsFragment_to_addContactDialogFragment"
+            app:destination="@id/addContactDialogFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/addContactDialogFragment"
+        android:name="com.example.level21.ui.addContactDialog.AddContactDialogFragment"
+        android:label="AddContactDialogFragment" >
+        <action
+            android:id="@+id/action_addContactDialogFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+    </dialog>
 </navigation>

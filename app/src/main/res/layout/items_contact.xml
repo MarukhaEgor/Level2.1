@@ -13,9 +13,11 @@
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
         tools:src="@drawable/ic_user_avatar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvUserName"
@@ -29,7 +31,8 @@
         tools:text="John Smith"
         app:layout_constraintTop_toTopOf="@id/ivAvatar"
         app:layout_constraintStart_toEndOf="@id/ivAvatar"
-        app:layout_constraintEnd_toStartOf="@id/ivDelBtn"/>
+        app:layout_constraintEnd_toStartOf="@id/ivDelBtn"
+        app:layout_constraintBottom_toTopOf="@+id/tvCarrier"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvCarrier"
@@ -38,11 +41,11 @@
         android:lines="1"
         android:ellipsize="end"
         android:textSize="14sp"
-        android:layout_marginTop="4dp"
         tools:text="Google Inc."
         app:layout_constraintTop_toBottomOf="@id/tvUserName"
         app:layout_constraintStart_toStartOf="@id/tvUserName"
-        app:layout_constraintEnd_toStartOf="@id/ivDelBtn"/>
+        app:layout_constraintEnd_toStartOf="@id/ivDelBtn"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivDelBtn"

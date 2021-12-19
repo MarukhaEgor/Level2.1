@@ -12,6 +12,6 @@ class SwipeToDel(var adapter: Adapter) : ItemTouchHelper.SimpleCallback(0, ItemT
     ): Boolean = false
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-        adapter.deleteItem(viewHolder.adapterPosition)
+        adapter.delItem(viewHolder.adapterPosition)
     }
 }
