@@ -42,7 +42,7 @@ class AddContactDialogFragment: DialogFragment() {
                 dialog?.dismiss()
             }
             icArrowBack.setOnClickListener {
-                dismiss()
+                dialog?.dismiss()
             }
         }
     }
@@ -54,6 +54,4 @@ class AddContactDialogFragment: DialogFragment() {
         params?.height = WindowManager.LayoutParams.MATCH_PARENT
         dialog?.onWindowAttributesChanged(params)
     }
-
-
 }

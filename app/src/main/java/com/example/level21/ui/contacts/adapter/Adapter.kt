@@ -2,8 +2,6 @@ package com.example.level21.ui.contacts.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.MutableLiveData
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.level21.R
@@ -47,7 +45,6 @@ class Adapter(
                 tvUserName.text = contact.userName
                 tvCarrier.text = contact.phone
             }
-
         }
     }
 

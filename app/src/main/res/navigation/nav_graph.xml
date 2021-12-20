@@ -12,7 +12,11 @@
         tools:layout="@layout/profile_fragment" >
         <action
             android:id="@+id/action_profileFragment_to_contactsFragment"
-            app:destination="@id/contactsFragment" />
+            app:destination="@id/contactsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -29,10 +33,14 @@
         android:label="ContactsFragment" >
         <action
             android:id="@+id/action_contactsFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_left"/>
         <action
             android:id="@+id/action_contactsFragment_to_addContactDialogFragment"
-            app:destination="@id/addContactDialogFragment" />
+            app:destination="@id/addContactDialogFragment"/>
     </fragment>
     <dialog
         android:id="@+id/addContactDialogFragment"

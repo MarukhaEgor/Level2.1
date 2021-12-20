@@ -2,10 +2,12 @@ package com.example.level21.ui.contacts
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
+import androidx.navigation.NavDirections
 import com.example.level21.data.db.entity.ContactsEntity
 import com.example.level21.data.models.ContactsModel
 import com.example.level21.data.repository.ContactsRepository
 import com.example.level21.utils.CoroutineViewModel
+import com.example.level21.utils.SingleLiveEvent
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 
@@ -14,7 +16,10 @@ class ContactsViewModel(private val repository: ContactsRepository) : CoroutineV
 
     val allContacts: LiveData<List<ContactsEntity>> = repository.allContacts.asLiveData()
 
-    fun initBase() {
+    private val _navigationEvent = SingleLiveEvent<NavDirections>()
+    val navigationEvent: LiveData<NavDirections> = _navigationEvent
+
+    fun initDataBase() {
         initDataBase(repository.readContacts())
     }
 
@@ -48,4 +53,9 @@ class ContactsViewModel(private val repository: ContactsRepository) : CoroutineV
             repository.deleteContact(contact)
         }
     }
+
+    fun goBack() {
+        _navigationEvent.value = ContactsFragmentDirections.actionContactsFragmentToProfileFragment()
+    }
+
 }

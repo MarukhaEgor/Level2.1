@@ -8,6 +8,7 @@ import androidx.annotation.WorkerThread
 import com.example.level21.data.db.ContactsDataBase
 import com.example.level21.data.db.entity.ContactsEntity
 import com.example.level21.data.models.ContactsModel
+import com.example.level21.utils.Constants
 import org.koin.core.KoinComponent
 
 class ContactsRepository(
@@ -18,34 +19,22 @@ class ContactsRepository(
 
     val allContacts: Flow<List<ContactsEntity>> = db.coordinatesDao().getAllContacts()
 
-    private var cols = listOf(
-        DISPLAY_NAME,
-        NUMBER,
-        PHOTO_URI,
-        _ID
-    ).toTypedArray()
-
     @SuppressLint("Range")
     fun readContacts(): MutableList<ContactsModel> {
         val contacts = context.contentResolver.query(
             CONTENT_URI,
-            cols,
+            Constants.CR_COLUMNS,
             null,
             null,
             null
         )
-        val contactList: MutableList<ContactsModel> = ArrayList()
+        val contactList = ArrayList<ContactsModel>()
         while (contacts?.moveToNext() == true) {
-            val name =
-                contacts.getString(contacts.getColumnIndex(DISPLAY_NAME))
-            val number =
-                contacts.getString(contacts.getColumnIndex(NUMBER))
-            val uriImg =
-                contacts.getString(contacts.getColumnIndex(PHOTO_URI))
-            val obj = ContactsModel()
-            obj.name = name
-            obj.number = number
-            obj.image = uriImg
+            val obj = ContactsModel().apply {
+                name = contacts.getString(contacts.getColumnIndex(DISPLAY_NAME))
+                number = contacts.getString(contacts.getColumnIndex(NUMBER))
+                image = contacts.getString(contacts.getColumnIndex(PHOTO_URI))
+            }
             contactList.add(obj)
         }
         contacts?.close()

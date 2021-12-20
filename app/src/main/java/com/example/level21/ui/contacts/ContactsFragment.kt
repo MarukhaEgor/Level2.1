@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -45,20 +47,27 @@ class ContactsFragment : Fragment(), ItemClickListener {
     }
 
     private fun setListeners(){
-        binding.tvAddContact.setOnClickListener {
-            val addContactDialogFragment = AddContactDialogFragment()
-            addContactDialogFragment.show(parentFragmentManager,"addContact")
+        binding.apply {
+            tvAddContact.setOnClickListener {
+                val addContactDialogFragment = AddContactDialogFragment()
+                addContactDialogFragment.show(parentFragmentManager,"addContact")
+            }
+
+            icArrowBack.setOnClickListener {
+                viewModel.goBack()
+            }
         }
     }
 
     private fun setDbObserve() {
         viewModel.allContacts.observe(viewLifecycleOwner, { contacts ->
             if (contacts.isEmpty()) {
-                viewModel.initBase()
+                viewModel.initDataBase()
             }
             rvAdapter.setListData(contacts as ArrayList<ContactsEntity>)
             contacts.let { rvAdapter.submitList(it) }
         })
+        viewModel.navigationEvent.observe(viewLifecycleOwner, ::navigate)
     }
 
     private fun initRv() {
@@ -73,6 +82,10 @@ class ContactsFragment : Fragment(), ItemClickListener {
         )
         val itemTouchHelper = ItemTouchHelper(SwipeToDel(rvAdapter))
         itemTouchHelper.attachToRecyclerView(binding.rvContactsList)
+    }
+
+    private fun navigate(direction: NavDirections) {
+        findNavController().navigate(direction)
     }
 
     override fun onClick(pos: Int) {
