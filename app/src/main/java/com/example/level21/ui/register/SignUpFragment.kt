@@ -1,17 +1,10 @@
 package com.example.level21.ui.register
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentActivity
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.example.level21.R
@@ -26,9 +19,7 @@ class SignUpFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if (viewModel.isAutoLogin()) {
-            navigate(SignUpFragmentDirections.actionSignUpFragmentToProfileFragment())
-        }
+        if (viewModel.isAutoLogin()) navigate(SignUpFragmentDirections.actionSignUpFragmentToProfileFragment())
     }
 
     override fun onCreateView(

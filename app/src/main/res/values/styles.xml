@@ -62,18 +62,6 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="profile_soc_btn">
-        <item name="android:layout_width">@dimen/rnd_social_btn_size</item>
-        <item name="android:layout_height">@dimen/rnd_social_btn_size</item>
-        <item name="android:backgroundTint">@color/white</item>
-        <item name="elevation">0dp</item>
-        <item name="backgroundTint">@color/main_orange</item>
-        <item name="borderWidth">@dimen/border_with</item>
-        <item name="fabCustomSize">@dimen/rnd_social_btn_size</item>
-        <item name="tint">@color/main_orange</item>
-        <item name="android:clickable">true</item>
-    </style>
-
     <style name="profile_avatar">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">0dp</item>

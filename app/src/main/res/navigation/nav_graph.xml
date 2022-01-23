@@ -17,6 +17,12 @@
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_left" />
+        <argument
+            android:name="Name"
+            android:defaultValue="Name" />
+        <argument
+            android:name="SecondName"
+            android:defaultValue="SecondName" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"

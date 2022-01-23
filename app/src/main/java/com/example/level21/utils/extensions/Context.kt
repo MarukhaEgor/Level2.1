@@ -1,4 +1,4 @@
-package com.example.level21.utils
+package com.example.level21.utils.extensions
 
 import android.content.Context
 

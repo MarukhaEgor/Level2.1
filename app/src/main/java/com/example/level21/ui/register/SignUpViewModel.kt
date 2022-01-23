@@ -19,7 +19,8 @@ class SignUpViewModel(private val repository: Repository) : ViewModel(), KoinCom
 
     fun goToProfile() {
         _navigationEvent.value =
-            SignUpFragmentDirections.actionSignUpFragmentToProfileFragment()
+            SignUpFragmentDirections.actionSignUpFragmentToProfileFragment(name.toString(),
+                secondName.toString())
     }
 
     fun saveLoginData(chkBoxResult: Boolean) {
@@ -27,9 +28,7 @@ class SignUpViewModel(private val repository: Repository) : ViewModel(), KoinCom
         repository.saveState(chkBoxResult)
     }
 
-    fun isAutoLogin(): Boolean {
-        return repository.getState()
-    }
+    fun isAutoLogin(): Boolean = repository.getState()
 
     private fun saveLoginData(data: LoginModel) {
         repository.saveDataToSharedPrefs(data)
@@ -43,5 +42,4 @@ class SignUpViewModel(private val repository: Repository) : ViewModel(), KoinCom
         }
         return false
     }
-
 }

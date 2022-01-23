@@ -15,6 +15,7 @@
         <entry key="..\:/AndroidProjects/Level21/app/src/main/res/drawable/ic_arrow_back_black.xml" value="0.3828125" />
         <entry key="..\:/AndroidProjects/Level21/app/src/main/res/drawable/ic_default_profile_photo.xml" value="0.3828125" />
         <entry key="..\:/AndroidProjects/Level21/app/src/main/res/drawable/ic_search.xml" value="0.3828125" />
+        <entry key="..\:/AndroidProjects/Level21/app/src/main/res/drawable/ic_search_24.xml" value="0.3828125" />
         <entry key="..\:/AndroidProjects/Level21/app/src/main/res/drawable/ic_select_photo.xml" value="0.3828125" />
         <entry key="..\:/AndroidProjects/Level21/app/src/main/res/drawable/ic_trash.xml" value="0.3828125" />
         <entry key="..\:/AndroidProjects/Level21/app/src/main/res/drawable/ic_user_avatar.xml" value="0.3828125" />
@@ -23,9 +24,10 @@
         <entry key="..\:/AndroidProjects/Level21/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/Level21/app/src/main/res/layout/contacts_fragment.xml" value="0.5" />
         <entry key="..\:/AndroidProjects/Level21/app/src/main/res/layout/dialog_fragment_add_contact.xml" value="0.33" />
+        <entry key="..\:/AndroidProjects/Level21/app/src/main/res/layout/fragment_detail_fragment.xml" value="0.30842391304347827" />
         <entry key="..\:/AndroidProjects/Level21/app/src/main/res/layout/items.xml" value="0.3342391304347826" />
         <entry key="..\:/AndroidProjects/Level21/app/src/main/res/layout/items_contact.xml" value="0.30027173913043476" />
-        <entry key="..\:/AndroidProjects/Level21/app/src/main/res/layout/profile_fragment.xml" value="0.67" />
+        <entry key="..\:/AndroidProjects/Level21/app/src/main/res/layout/profile_fragment.xml" value="0.25" />
         <entry key="..\:/AndroidProjects/Level21/app/src/main/res/layout/sign_up_fragment.xml" value="0.5" />
       </map>
     </option>

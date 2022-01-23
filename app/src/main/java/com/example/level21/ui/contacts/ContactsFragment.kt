@@ -5,30 +5,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.level21.data.db.entity.ContactsEntity
 import com.example.level21.databinding.ContactsFragmentBinding
 import com.example.level21.ui.addContactDialog.AddContactDialogFragment
 import com.example.level21.ui.contacts.adapter.Adapter
 import com.example.level21.utils.Constants
 import com.example.level21.utils.ContactListItemDecoration
 import com.example.level21.utils.SwipeToDel
-import com.example.level21.utils.dpToPx
+import com.example.level21.utils.extensions.dpToPx
 import org.koin.android.ext.android.inject
 
-class ContactsFragment : Fragment(), ItemClickListener {
+class ContactsFragment : Fragment() {
 
     private val viewModel: ContactsViewModel by inject()
     private lateinit var binding: ContactsFragmentBinding
 
-    private val rvAdapter: Adapter by lazy {
-        Adapter(
-            itemClickListener = this
-        )
+    private val rvAdapter: Adapter by lazy { Adapter({ position -> deleteItem(position) }
+    ) {  showToast() }
     }
 
     override fun onCreateView(
@@ -52,7 +50,6 @@ class ContactsFragment : Fragment(), ItemClickListener {
                 val addContactDialogFragment = AddContactDialogFragment()
                 addContactDialogFragment.show(parentFragmentManager,"addContact")
             }
-
             icArrowBack.setOnClickListener {
                 viewModel.goBack()
             }
@@ -61,10 +58,7 @@ class ContactsFragment : Fragment(), ItemClickListener {
 
     private fun setDbObserve() {
         viewModel.allContacts.observe(viewLifecycleOwner, { contacts ->
-            if (contacts.isEmpty()) {
-                viewModel.initDataBase()
-            }
-            rvAdapter.setListData(contacts as ArrayList<ContactsEntity>)
+            if (contacts.isEmpty()) viewModel.initDataBase()
             contacts.let { rvAdapter.submitList(it) }
         })
         viewModel.navigationEvent.observe(viewLifecycleOwner, ::navigate)
@@ -80,15 +74,19 @@ class ContactsFragment : Fragment(), ItemClickListener {
                 requireContext().dpToPx(Constants.RV_ITEM_MARGIN)
             )
         )
-        val itemTouchHelper = ItemTouchHelper(SwipeToDel(rvAdapter))
-        itemTouchHelper.attachToRecyclerView(binding.rvContactsList)
+        ItemTouchHelper(SwipeToDel(rvAdapter)).apply { attachToRecyclerView(binding.rvContactsList) }
     }
 
     private fun navigate(direction: NavDirections) {
         findNavController().navigate(direction)
     }
 
-    override fun onClick(pos: Int) {
-        viewModel.deleteItem(pos)
+    private fun showToast() {
+        Toast.makeText(activity?.applicationContext, "Test", Toast.LENGTH_LONG).show()
+        TODO( "запилить переход к детейл фрагменту")
+    }
+
+    private fun deleteItem(position: Int) {
+        viewModel.deleteItem(position)
     }
 }
