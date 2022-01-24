@@ -1,7 +1,15 @@
 package com.example.level21.data.models
 
-class ContactsModel {
-    var name = ""
-    var number = ""
-    var image :String? = null
-}
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class ContactsModel(
+    val userName: String,
+    val career: String?,
+    val email: String?,
+    val phone: String?,
+    val address: String?,
+    val birthDay: String?,
+    val avatar: String?,
+): Parcelable

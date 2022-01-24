@@ -6,13 +6,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.level21.R
 import com.example.level21.data.db.entity.ContactsEntity
+import com.example.level21.data.models.ContactsModel
 import com.example.level21.databinding.ItemsContactBinding
 import com.example.level21.utils.DiffUtils
 import com.example.level21.utils.extensions.loadCircleImage
 
 class Adapter(
     private val deleteItem: (position: Int) -> Unit,
-    private val ShowToast: () -> Unit,
+    private val ShowToast: (contact: ContactsModel) -> Unit,
 ) :
     ListAdapter<ContactsEntity, Adapter.ContactsViewHolder>(DiffUtils()) {
 
@@ -33,13 +34,14 @@ class Adapter(
         RecyclerView.ViewHolder(binding.root) {
 
         private val delBtn = binding.ivDelBtn
+
         fun bind(contact: ContactsEntity) {
             binding.apply {
                 ivAvatar.loadCircleImage(contact.avatar)
                 tvUserName.text = contact.userName
                 tvCarrier.text = contact.phone
                 itemView.setOnClickListener {
-                    showToast()
+                    showToast(contact)
                 }
             }
             delBtn.setOnClickListener {
@@ -48,7 +50,17 @@ class Adapter(
         }
     }
 
-    private fun showToast() = ShowToast()
+    private fun showToast(contact: ContactsEntity) {
+        ShowToast(ContactsModel(
+            userName = contact.userName,
+            phone = contact.phone,
+            avatar = contact.avatar,
+            career = "",
+            address = "",
+            birthDay = "",
+            email = ""
+        ))
+    }
 
     fun delItem(position: Int) = deleteItem(position)
 }

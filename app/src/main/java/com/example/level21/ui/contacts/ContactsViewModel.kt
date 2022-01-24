@@ -19,6 +19,9 @@ class ContactsViewModel(private val repository: ContactsRepository) : CoroutineV
     private val _navigationEvent = SingleLiveEvent<NavDirections>()
     val navigationEvent: LiveData<NavDirections> = _navigationEvent
 
+    private val _navigationEventDetail = SingleLiveEvent<NavDirections>()
+    val navigationEventDetail: LiveData<NavDirections> = _navigationEventDetail
+
     fun initDataBase() {
         initDataBase(repository.readContacts())
     }
@@ -32,9 +35,9 @@ class ContactsViewModel(private val repository: ContactsRepository) : CoroutineV
     private fun initDataBase(contactList: MutableList<ContactsModel>) {
         for (it in 0 until contactList.size) {
             val contact = ContactsEntity(
-                userName = contactList[it].name,
-                phone = contactList[it].number,
-                avatar = contactList[it].image,
+                userName = contactList[it].userName,
+                phone = contactList[it].phone,
+                avatar = contactList[it].avatar,
                 career = "",
                 address = "",
                 birthDay = "",
@@ -52,6 +55,10 @@ class ContactsViewModel(private val repository: ContactsRepository) : CoroutineV
         scope.launch {
             repository.deleteContact(contact)
         }
+    }
+
+    fun goToDetailFragment(contact: ContactsModel){
+        _navigationEventDetail.value = ContactsFragmentDirections.actionContactsFragmentToDetailFragment()
     }
 
     fun goBack() {

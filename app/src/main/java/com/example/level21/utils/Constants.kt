@@ -9,6 +9,7 @@ object Constants {
     const val PASS_MIN_LENGTH = 7
     const val DATABASE_NAME = "Contacts database"
     const val RV_ITEM_MARGIN = 16
+    const val CONTACT_DATA = "contact"
     val CR_COLUMNS = listOf(
         ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
         ContactsContract.CommonDataKinds.Phone.NUMBER,

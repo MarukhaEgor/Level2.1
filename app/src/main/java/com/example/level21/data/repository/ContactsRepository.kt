@@ -30,11 +30,16 @@ class ContactsRepository(
         )
         val contactList = ArrayList<ContactsModel>()
         while (contacts?.moveToNext() == true) {
-            val obj = ContactsModel().apply {
-                name = contacts.getString(contacts.getColumnIndex(DISPLAY_NAME))
-                number = contacts.getString(contacts.getColumnIndex(NUMBER))
-                image = contacts.getString(contacts.getColumnIndex(PHOTO_URI))
-            }
+            val obj = ContactsModel(
+                userName = contacts.getString(contacts.getColumnIndex(DISPLAY_NAME)),
+                phone = contacts.getString(contacts.getColumnIndex(NUMBER)),
+                avatar = contacts.getString(contacts.getColumnIndex(PHOTO_URI)),
+                address = null,
+                birthDay = null,
+                career = null,
+                email = null
+                )
+
             contactList.add(obj)
         }
         contacts?.close()
