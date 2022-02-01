@@ -27,6 +27,8 @@
     <string name="btn_save_txt">SAVE</string>
     <string name="tv_title_add_contact_fragment">Add contact</string>
     <string name="tv_contacts_title">Contacts</string>
-    <string name="tvBtn_add_contact">Add contacts</string>
+    <string name="tv_Btn_add_contact">Add contacts</string>
     <string name="date_of_birth_hint">Date of birth</string>
+    <string name="tv_profile">Profile</string>
+    <string name="btn_tv_message">Message</string>
 </resources>

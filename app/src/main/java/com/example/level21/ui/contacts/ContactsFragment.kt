@@ -5,19 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
 import androidx.navigation.NavDirections
-import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.level21.R
-import com.example.level21.data.db.entity.ContactsEntity
+import com.example.level21.R.id.mainNavHostFragment
 import com.example.level21.data.models.ContactsModel
 import com.example.level21.databinding.ContactsFragmentBinding
 import com.example.level21.ui.addContactDialog.AddContactDialogFragment
@@ -35,10 +28,11 @@ class ContactsFragment : Fragment() {
     private val viewModel: ContactsViewModel by inject()
     private lateinit var binding: ContactsFragmentBinding
 
-    private val rvAdapter: Adapter by lazy { Adapter({ position -> deleteItem(position) }
-    ) {  contact ->
-        showToast(contact)
-    }
+    private val rvAdapter: Adapter by lazy {
+        Adapter({ position -> deleteItem(position) }
+        ) { contact ->
+            showDetail(contact)
+        }
     }
 
     override fun onCreateView(
@@ -56,11 +50,11 @@ class ContactsFragment : Fragment() {
         setListeners()
     }
 
-    private fun setListeners(){
+    private fun setListeners() {
         binding.apply {
             tvAddContact.setOnClickListener {
                 val addContactDialogFragment = AddContactDialogFragment()
-                addContactDialogFragment.show(parentFragmentManager,"addContact")
+                addContactDialogFragment.show(parentFragmentManager, "addContact")
             }
             icArrowBack.setOnClickListener {
                 viewModel.goBack()
@@ -74,6 +68,7 @@ class ContactsFragment : Fragment() {
             contacts.let { rvAdapter.submitList(it) }
         })
         viewModel.navigationEvent.observe(viewLifecycleOwner, ::navigate)
+        viewModel.navigationEventDetail.observe(viewLifecycleOwner, ::navigate)
     }
 
     private fun initRv() {
@@ -93,16 +88,26 @@ class ContactsFragment : Fragment() {
         findNavController().navigate(direction)
     }
 
-    private fun navigateDetail(contact: ContactsEntity) {
-        parentFragmentManager.commit {
-            setReorderingAllowed(true)
-            replace<DetailFragment>(R.id.contactsFragment)
-        }
+    private fun navigateDetailTransactions(contact: ContactsModel) {
+        val bundle = Bundle()
+        bundle.putParcelable("contact", contact)
+
+        val detailFragment = DetailFragment()
+        detailFragment.arguments = bundle
+
+        parentFragmentManager
+            .beginTransaction()
+            .replace(mainNavHostFragment, detailFragment)
+            .commit()
+
     }
 
-    private fun showToast(contact: ContactsModel) {
-        viewModel.goToDetailFragment(contact)
-        Toast.makeText(activity?.applicationContext, contact.userName, Toast.LENGTH_LONG).show()
+    private fun showDetail(contact: ContactsModel) {
+        if (GlobalConstants.IF_NAV_TRANSACTION) {
+            viewModel.goToDetailFragmentNavigate(contact)
+        } else {
+            navigateDetailTransactions(contact)
+        }
     }
 
     private fun deleteItem(position: Int) {

@@ -57,8 +57,8 @@ class ContactsViewModel(private val repository: ContactsRepository) : CoroutineV
         }
     }
 
-    fun goToDetailFragment(contact: ContactsModel){
-        _navigationEventDetail.value = ContactsFragmentDirections.actionContactsFragmentToDetailFragment()
+    fun goToDetailFragmentNavigate(contact: ContactsModel){
+        _navigationEventDetail.value = ContactsFragmentDirections.actionContactsFragmentToDetailFragment(contact)
     }
 
     fun goBack() {

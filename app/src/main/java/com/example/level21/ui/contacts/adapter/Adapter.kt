@@ -13,7 +13,7 @@ import com.example.level21.utils.extensions.loadCircleImage
 
 class Adapter(
     private val deleteItem: (position: Int) -> Unit,
-    private val ShowToast: (contact: ContactsModel) -> Unit,
+    private val showDetail: (contact: ContactsModel) -> Unit,
 ) :
     ListAdapter<ContactsEntity, Adapter.ContactsViewHolder>(DiffUtils()) {
 
@@ -32,35 +32,31 @@ class Adapter(
         private val binding: ItemsContactBinding,
     ) :
         RecyclerView.ViewHolder(binding.root) {
-
-        private val delBtn = binding.ivDelBtn
-
         fun bind(contact: ContactsEntity) {
             binding.apply {
                 ivAvatar.loadCircleImage(contact.avatar)
                 tvUserName.text = contact.userName
                 tvCarrier.text = contact.phone
                 itemView.setOnClickListener {
-                    showToast(contact)
+                    showDetail(contact)
                 }
             }
-            delBtn.setOnClickListener {
+            binding.ivDelBtn.setOnClickListener {
                 delItem(adapterPosition)
             }
         }
     }
 
-    private fun showToast(contact: ContactsEntity) {
-        ShowToast(ContactsModel(
+    private fun showDetail(contact: ContactsEntity) =
+        showDetail(ContactsModel(
             userName = contact.userName,
             phone = contact.phone,
             avatar = contact.avatar,
-            career = "",
-            address = "",
+            career = contact.career,
+            address = contact.address,
             birthDay = "",
             email = ""
         ))
-    }
 
     fun delItem(position: Int) = deleteItem(position)
 }

@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Profile"
+                android:text="@string/tv_profile"
                 android:textColor="@color/white"
                 android:textSize="@dimen/txtSize_18"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -44,41 +44,42 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivDetailAvatar"
+                android:layout_width="match_parent"
                 style="@style/profile_avatar"
                 tools:src="@drawable/avatar_img"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent="0.50"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvProfile"
-                app:layout_constraintBottom_toTopOf="@+id/tvDetailAvatar"
+                app:layout_constraintBottom_toTopOf="@+id/tvDetailName"
                  />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvDetailAvatar"
+                android:id="@+id/tvDetailName"
                 style="@style/profile_name_Style"
                 tools:text="@string/profile_view_name"
-                app:layout_constraintBottom_toTopOf="@+id/tvDetailCarrier"
+                app:layout_constraintBottom_toTopOf="@+id/tvDetailCarreer"
                 app:layout_constraintEnd_toEndOf="@+id/ivDetailAvatar"
                 app:layout_constraintStart_toStartOf="@+id/ivDetailAvatar"
                 app:layout_constraintTop_toBottomOf="@+id/ivDetailAvatar" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvDetailCarrier"
+                android:id="@+id/tvDetailCarreer"
                 style="@style/profile_data_style"
                 tools:text="@string/profile_view_profession"
                 app:layout_constraintBottom_toTopOf="@+id/tvDetailAddress"
-                app:layout_constraintEnd_toEndOf="@+id/tvDetailAvatar"
-                app:layout_constraintStart_toStartOf="@+id/tvDetailAvatar"
-                app:layout_constraintTop_toBottomOf="@+id/tvDetailAvatar" />
+                app:layout_constraintEnd_toEndOf="@+id/tvDetailName"
+                app:layout_constraintStart_toStartOf="@+id/tvDetailName"
+                app:layout_constraintTop_toBottomOf="@+id/tvDetailName" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvDetailAddress"
                 style="@style/profile_data_style"
                 tools:text="@string/profile_view_adress"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/tvDetailAvatar"
-                app:layout_constraintStart_toStartOf="@+id/tvDetailAvatar"
-                app:layout_constraintTop_toBottomOf="@+id/tvDetailCarrier" />
+                app:layout_constraintEnd_toEndOf="@+id/tvDetailName"
+                app:layout_constraintStart_toStartOf="@+id/tvDetailName"
+                app:layout_constraintTop_toBottomOf="@+id/tvDetailCarreer" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -92,7 +93,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnDetailMessage"
                 style="@style/profile_activity_btn"
-                android:text="@string/profile_view_contacts_btn"
+                android:text="@string/btn_tv_message"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
