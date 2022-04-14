@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.level21.R.id.mainNavHostFragment
+import com.example.level21.arch.BaseFragment
 import com.example.level21.data.models.ContactsModel
 import com.example.level21.databinding.ContactsFragmentBinding
+import com.example.level21.databinding.ProfileFragmentBinding
 import com.example.level21.ui.addContactDialog.AddContactDialogFragment
 import com.example.level21.ui.contacts.adapter.Adapter
 import com.example.level21.ui.detail.DetailFragment
@@ -23,10 +25,12 @@ import com.example.level21.utils.SwipeToDel
 import com.example.level21.utils.extensions.dpToPx
 import org.koin.android.ext.android.inject
 
-class ContactsFragment : Fragment() {
+class ContactsFragment(
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) ->
+    ContactsFragmentBinding = ContactsFragmentBinding::inflate
+) : BaseFragment<ContactsFragmentBinding>() {
 
     private val viewModel: ContactsViewModel by inject()
-    private lateinit var binding: ContactsFragmentBinding
 
     private val rvAdapter: Adapter by lazy {
         Adapter({ position -> deleteItem(position) }
@@ -35,22 +39,7 @@ class ContactsFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        binding = ContactsFragmentBinding.inflate(inflater)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initRv()
-        setDbObserve()
-        setListeners()
-    }
-
-    private fun setListeners() {
+    override fun setListeners() {
         binding.apply {
             tvAddContact.setOnClickListener {
                 val addContactDialogFragment = AddContactDialogFragment()
@@ -62,11 +51,16 @@ class ContactsFragment : Fragment() {
         }
     }
 
-    private fun setDbObserve() {
-        viewModel.allContacts.observe(viewLifecycleOwner, { contacts ->
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initRv()
+    }
+
+    override fun setObservers() {
+        viewModel.allContacts.observe(viewLifecycleOwner) { contacts ->
             if (contacts.isEmpty()) viewModel.initDataBase()
             contacts.let { rvAdapter.submitList(it) }
-        })
+        }
         viewModel.navigationEvent.observe(viewLifecycleOwner, ::navigate)
         viewModel.navigationEventDetail.observe(viewLifecycleOwner, ::navigate)
     }
@@ -84,9 +78,6 @@ class ContactsFragment : Fragment() {
         ItemTouchHelper(SwipeToDel(rvAdapter)).apply { attachToRecyclerView(binding.rvContactsList) }
     }
 
-    private fun navigate(direction: NavDirections) {
-        findNavController().navigate(direction)
-    }
 
     private fun navigateDetailTransactions(contact: ContactsModel) {
         val bundle = Bundle()
@@ -99,7 +90,6 @@ class ContactsFragment : Fragment() {
             .beginTransaction()
             .replace(mainNavHostFragment, detailFragment)
             .commit()
-
     }
 
     private fun showDetail(contact: ContactsModel) {
@@ -110,7 +100,5 @@ class ContactsFragment : Fragment() {
         }
     }
 
-    private fun deleteItem(position: Int) {
-        viewModel.deleteItem(position)
-    }
+    private fun deleteItem(position: Int) = viewModel.deleteItem(position)
 }

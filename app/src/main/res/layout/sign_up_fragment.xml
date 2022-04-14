@@ -82,7 +82,6 @@
                 android:textColor="@color/white"
                 android:textCursorDrawable="@null"
                 app:errorEnabled="true" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.checkbox.MaterialCheckBox
@@ -121,13 +120,13 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:text="or"
+            android:textColor="@color/white"
             android:textSize="@dimen/txtSize_18"
-            app:layout_constraintTop_toBottomOf="@+id/btnRegisterGoogle"
             app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/btnRegisterGoogle" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvSignUpViewCondit"

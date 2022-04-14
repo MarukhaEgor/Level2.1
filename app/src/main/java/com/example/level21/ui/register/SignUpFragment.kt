@@ -8,43 +8,26 @@ import android.view.ViewGroup
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.example.level21.R
+import com.example.level21.arch.BaseFragment
+import com.example.level21.databinding.ProfileFragmentBinding
 import com.example.level21.databinding.SignUpFragmentBinding
 import com.example.level21.utils.Validator
 import org.koin.android.ext.android.inject
 
-class SignUpFragment : Fragment() {
+class SignUpFragment : BaseFragment<SignUpFragmentBinding>() {
+
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> SignUpFragmentBinding =
+        SignUpFragmentBinding::inflate
 
     private val viewModel: SignUpViewModel by inject()
-    private lateinit var binding: SignUpFragmentBinding
 
     override fun onResume() {
         super.onResume()
         if (viewModel.isAutoLogin()) navigate(SignUpFragmentDirections.actionSignUpFragmentToProfileFragment())
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = SignUpFragmentBinding.inflate(inflater)
-        setOnClickListeners()
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setObservers()
-    }
-
-    private fun setObservers() {
-        viewModel.navigationEvent.observe(viewLifecycleOwner, ::navigate)
-    }
-
-    private fun setOnClickListeners() {
-        binding.btnRegister.setOnClickListener {
-            goToProfile()
-        }
-    }
+    override fun setObservers() = viewModel.navigationEvent.observe(viewLifecycleOwner, ::navigate)
+    override fun setListeners() = binding.btnRegister.setOnClickListener { goToProfile() }
 
     private fun goToProfile() {
         val email = binding.etSignUpViewEmail.text.toString()
@@ -63,10 +46,6 @@ class SignUpFragment : Fragment() {
                 binding.tilSignUpViewPass.error = getString(R.string.wrong_pass_msg)
             }
         }
-    }
-
-    private fun navigate(direction: NavDirections) {
-        findNavController().navigate(direction)
     }
 
     override fun onPause() {

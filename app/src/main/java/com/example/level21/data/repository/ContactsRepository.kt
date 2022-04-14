@@ -39,7 +39,6 @@ class ContactsRepository(
                 career = null,
                 email = null
                 )
-
             contactList.add(obj)
         }
         contacts?.close()

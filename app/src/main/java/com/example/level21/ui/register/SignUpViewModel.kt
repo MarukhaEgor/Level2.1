@@ -9,13 +9,13 @@ import com.example.level21.utils.SingleLiveEvent
 import com.example.level21.utils.Validator
 import org.koin.core.KoinComponent
 
-class SignUpViewModel(private val repository: Repository) : ViewModel(), KoinComponent {
+class SignUpViewModel(private val repository: Repository,
+                      private var name: String? = null,
+                      private var secondName: String? = null
+) : ViewModel(), KoinComponent {
 
     private val _navigationEvent = SingleLiveEvent<NavDirections>()
     val navigationEvent: LiveData<NavDirections> = _navigationEvent
-
-    private var name: String? = null
-    private var secondName: String? = null
 
     fun goToProfile() {
         _navigationEvent.value =
@@ -30,16 +30,16 @@ class SignUpViewModel(private val repository: Repository) : ViewModel(), KoinCom
 
     fun isAutoLogin(): Boolean = repository.getState()
 
-    private fun saveLoginData(data: LoginModel) {
-        repository.saveDataToSharedPrefs(data)
-    }
+    private fun saveLoginData(data: LoginModel) = repository.saveDataToSharedPrefs(data)
 
     fun validChecker(email: String, pass: String): Boolean {
-        if (Validator.isValidData(email,pass)){
-            email.substring(0, email.indexOf(".")).also { name = it }
-            email.substring(email.indexOf(".") + 1, email.indexOf("@")).also { secondName = it }
-            return true
+        return when {
+            Validator.isValidData(email,pass) -> {
+                email.substring(0, email.indexOf(".")).also { name = it }
+                email.substring(email.indexOf(".") + 1, email.indexOf("@")).also { secondName = it }
+                true
+            }
+            else -> false
         }
-        return false
     }
 }

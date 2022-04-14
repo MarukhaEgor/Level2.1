@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.32685185185185184" />
         <entry key="..\:/AndroidProjects/Level21/app/src/main/res/drawable-v24/avatar_img_style.xml" value="0.3828125" />
         <entry key="..\:/AndroidProjects/Level21/app/src/main/res/drawable-v24/btn_txt_color.xml" value="0.3828125" />
         <entry key="..\:/AndroidProjects/Level21/app/src/main/res/drawable-v24/ic_arrow_back_24px.xml" value="0.3828125" />
@@ -30,6 +31,11 @@
         <entry key="..\:/AndroidProjects/Level21/app/src/main/res/layout/items_contact.xml" value="0.30027173913043476" />
         <entry key="..\:/AndroidProjects/Level21/app/src/main/res/layout/profile_fragment.xml" value="0.25" />
         <entry key="..\:/AndroidProjects/Level21/app/src/main/res/layout/sign_up_fragment.xml" value="0.5" />
+        <entry key="app/src/main/res/drawable-v24/rnd_button_orange.xml" value="0.3385" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.35520833333333335" />
+        <entry key="app/src/main/res/layout/login_fragment.xml" value="0.3265625" />
+        <entry key="app/src/main/res/layout/profile_fragment.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/sign_up_fragment.xml" value="0.5" />
       </map>
     </option>
   </component>

@@ -2,25 +2,23 @@ package com.example.level21.ui.profile
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import com.example.level21.R
+import com.example.level21.arch.BaseFragment
 import com.example.level21.databinding.ProfileFragmentBinding
-import com.example.level21.utils.extensions.loadCircleImage
 import org.koin.android.ext.android.inject
 
-class ProfileFragment : Fragment() {
+class ProfileFragment(
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) ->
+    ProfileFragmentBinding = ProfileFragmentBinding::inflate
+) : BaseFragment<ProfileFragmentBinding>() {
 
     private val viewModel: ProfileViewModel by inject()
-    private lateinit var binding: ProfileFragmentBinding
 
     private val requestPermission =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
@@ -31,14 +29,7 @@ class ProfileFragment : Fragment() {
             }
         }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setObservers()
-        viewModel.setDataToProfile()
-        setListeners()
-    }
-
-    private fun setListeners() {
+    override fun setListeners() {
         binding.btnProfileActivityViewContact.setOnClickListener {
             if (ContextCompat.checkSelfPermission(
                     requireContext(),
@@ -52,24 +43,13 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun navigate(direction: NavDirections) {
-        findNavController().navigate(direction)
-    }
-
-    private fun setObservers() {
+    override fun setObservers() {
         with(viewModel) {
-            loginModel.observe(viewLifecycleOwner, { it ->
+            loginModel.observe(viewLifecycleOwner) { it ->
                 ("${it.name} ${it.secondName}").also { binding.tvProfileActivityName.text = it }
-            })
+            }
             navigationEvent.observe(viewLifecycleOwner, ::navigate)
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        binding = ProfileFragmentBinding.inflate(inflater)
-        return binding.root
-    }
 }
