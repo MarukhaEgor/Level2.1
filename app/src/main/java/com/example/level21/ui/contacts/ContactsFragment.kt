@@ -5,8 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.NavDirections
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +12,6 @@ import com.example.level21.R.id.mainNavHostFragment
 import com.example.level21.arch.BaseFragment
 import com.example.level21.data.models.ContactsModel
 import com.example.level21.databinding.ContactsFragmentBinding
-import com.example.level21.databinding.ProfileFragmentBinding
 import com.example.level21.ui.addContactDialog.AddContactDialogFragment
 import com.example.level21.ui.contacts.adapter.Adapter
 import com.example.level21.ui.detail.DetailFragment
@@ -77,7 +74,6 @@ class ContactsFragment(
         )
         ItemTouchHelper(SwipeToDel(rvAdapter)).apply { attachToRecyclerView(binding.rvContactsList) }
     }
-
 
     private fun navigateDetailTransactions(contact: ContactsModel) {
         val bundle = Bundle()

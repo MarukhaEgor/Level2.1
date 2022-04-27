@@ -1,17 +1,18 @@
 package com.example.level21.ui.contacts
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import com.example.level21.data.db.entity.ContactsEntity
 import com.example.level21.data.models.ContactsModel
 import com.example.level21.data.repository.ContactsRepository
-import com.example.level21.utils.CoroutineViewModel
 import com.example.level21.utils.SingleLiveEvent
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 
-class ContactsViewModel(private val repository: ContactsRepository) : CoroutineViewModel(),
+class ContactsViewModel(private val repository: ContactsRepository) : ViewModel(),
     KoinComponent {
 
     val allContacts: LiveData<List<ContactsEntity>> = repository.allContacts.asLiveData()
@@ -27,7 +28,7 @@ class ContactsViewModel(private val repository: ContactsRepository) : CoroutineV
     }
 
     private fun insertContact(contact: ContactsEntity) {
-        scope.launch {
+        viewModelScope.launch {
             repository.insertContact(contact)
         }
     }
@@ -52,7 +53,7 @@ class ContactsViewModel(private val repository: ContactsRepository) : CoroutineV
     }
 
     private fun deleteItemFromDB(contact: ContactsEntity?) {
-        scope.launch {
+        viewModelScope.launch {
             repository.deleteContact(contact)
         }
     }

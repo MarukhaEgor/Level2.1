@@ -1,15 +1,16 @@
 package com.example.level21.ui.addContactDialog
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.level21.data.db.entity.ContactsEntity
 import com.example.level21.data.repository.ContactsRepository
-import com.example.level21.utils.CoroutineViewModel
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 
-class AddContactDialogFragmentViewModel(private val repository: ContactsRepository) : CoroutineViewModel(), KoinComponent {
+class AddContactDialogFragmentViewModel(private val repository: ContactsRepository) : ViewModel(), KoinComponent {
 
     fun saveContact(contact: ContactsEntity) {
-        scope.launch {
+        viewModelScope.launch {
             repository.insertContact(contact)
         }
     }
