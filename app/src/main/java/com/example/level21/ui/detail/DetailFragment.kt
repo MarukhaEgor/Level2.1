@@ -5,28 +5,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.level21.base.BaseFragment
 import com.example.level21.data.models.ContactsModel
 import com.example.level21.databinding.DetailFragmentBinding
+import com.example.level21.databinding.ProfileFragmentBinding
+import com.example.level21.ui.profile.ProfileViewModel
 import com.example.level21.utils.extensions.loadCircleImage
+import org.koin.android.ext.android.inject
 
 
-class DetailFragment : Fragment() {
+class DetailFragment(
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) ->
+    DetailFragmentBinding = DetailFragmentBinding::inflate
+) : BaseFragment<DetailFragmentBinding>() {
 
-    private lateinit var binding: DetailFragmentBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        binding = DetailFragmentBinding.inflate(inflater)
-        return binding.root
-    }
+    private val viewModel: DetailFragmentViewModel by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val bundle = this.arguments
         val contact: ContactsModel? = bundle?.getParcelable("contact")
-        if(bundle != null){
+        if (bundle != null) {
             setUpData(contact)
         }
     }
@@ -38,6 +37,11 @@ class DetailFragment : Fragment() {
             tvDetailCarreer.text = contact?.career
             tvDetailAddress.text = contact?.address
         }
+    }
+
+    override fun setObservers() = viewModel.navigationEvent.observe(viewLifecycleOwner, ::navigate)
+    override fun setListeners() = binding.icArrowBack.setOnClickListener {
+        viewModel.goBack()
     }
 
 }

@@ -59,11 +59,10 @@ class ContactsViewModel(private val repository: ContactsRepository) : ViewModel(
     }
 
     fun goToDetailFragmentNavigate(contact: ContactsModel){
-        _navigationEventDetail.value = ContactsFragmentDirections.actionContactsFragmentToDetailFragment(contact)
+        //_navigationEventDetail.value = ContactsFragmentDirections.actionContactsFragmentToDetailFragment(contact)
     }
 
     fun goBack() {
-        _navigationEvent.value = ContactsFragmentDirections.actionContactsFragmentToProfileFragment()
+        //_navigationEvent.value = ContactsFragmentDirections.actionContactsFragmentToProfileFragment()
     }
-
 }

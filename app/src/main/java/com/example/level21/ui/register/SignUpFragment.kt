@@ -1,15 +1,10 @@
 package com.example.level21.ui.register
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.example.level21.R
-import com.example.level21.arch.BaseFragment
-import com.example.level21.databinding.ProfileFragmentBinding
+import com.example.level21.base.BaseFragment
 import com.example.level21.databinding.SignUpFragmentBinding
 import com.example.level21.utils.Validator
 import org.koin.android.ext.android.inject
@@ -23,7 +18,8 @@ class SignUpFragment : BaseFragment<SignUpFragmentBinding>() {
 
     override fun onResume() {
         super.onResume()
-        if (viewModel.isAutoLogin()) navigate(SignUpFragmentDirections.actionSignUpFragmentToProfileFragment())
+        if (viewModel.isAutoLogin())
+            findNavController().navigate(R.id.action_signUpFragment_to_viewPagerFragment)
     }
 
     override fun setObservers() = viewModel.navigationEvent.observe(viewLifecycleOwner, ::navigate)

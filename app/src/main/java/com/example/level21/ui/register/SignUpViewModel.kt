@@ -19,8 +19,7 @@ class SignUpViewModel(private val repository: Repository,
 
     fun goToProfile() {
         _navigationEvent.value =
-            SignUpFragmentDirections.actionSignUpFragmentToProfileFragment(name.toString(),
-                secondName.toString())
+        SignUpFragmentDirections.actionSignUpFragmentToViewPagerFragment()
     }
 
     fun saveLoginData(chkBoxResult: Boolean) {

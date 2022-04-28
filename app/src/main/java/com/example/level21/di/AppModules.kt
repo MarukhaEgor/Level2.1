@@ -6,4 +6,5 @@ val appModules = listOf(dbModule,
     profileViewModel,
     addContactViewModel,
     contactsViewModel,
+    detailViewModel,
     contactsRepository)

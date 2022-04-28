@@ -1,7 +1,8 @@
 package com.example.level21.data.models
 
 import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import kotlinx.android.parcel.Parcelize
+
 
 @Parcelize
 data class ContactsModel(
