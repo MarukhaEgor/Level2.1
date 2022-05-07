@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
@@ -13,6 +14,7 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
 
     private var _binding: ViewBinding? = null
     abstract val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> T
+
     @Suppress("UNCHECKED_CAST")
     protected val binding: T
         get() = _binding as T
@@ -38,6 +40,7 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
     }
 
     open fun navigate(direction: NavDirections) = findNavController().navigate(direction)
+    open fun navigateById(@IdRes resId: Int) = findNavController().navigate(resId)
 
     abstract fun setObservers()
     abstract fun setListeners()

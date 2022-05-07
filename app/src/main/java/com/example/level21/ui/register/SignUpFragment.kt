@@ -2,7 +2,6 @@ package com.example.level21.ui.register
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import com.example.level21.R
 import com.example.level21.base.BaseFragment
 import com.example.level21.databinding.SignUpFragmentBinding
@@ -19,7 +18,7 @@ class SignUpFragment : BaseFragment<SignUpFragmentBinding>() {
     override fun onResume() {
         super.onResume()
         if (viewModel.isAutoLogin())
-            findNavController().navigate(R.id.action_signUpFragment_to_viewPagerFragment)
+            navigateById(R.id.action_signUpFragment_to_viewPagerFragment)
     }
 
     override fun setObservers() = viewModel.navigationEvent.observe(viewLifecycleOwner, ::navigate)

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
+import com.example.level21.R
 import com.example.level21.data.db.entity.ContactsEntity
 import com.example.level21.data.models.ContactsModel
 import com.example.level21.data.repository.ContactsRepository
@@ -17,11 +18,11 @@ class ContactsViewModel(private val repository: ContactsRepository) : ViewModel(
 
     val allContacts: LiveData<List<ContactsEntity>> = repository.allContacts.asLiveData()
 
-    private val _navigationEvent = SingleLiveEvent<NavDirections>()
-    val navigationEvent: LiveData<NavDirections> = _navigationEvent
+    private val _navigationEvent = SingleLiveEvent<Int>()
+    val navigationEvent: LiveData<Int> = _navigationEvent
 
-    private val _navigationEventDetail = SingleLiveEvent<NavDirections>()
-    val navigationEventDetail: LiveData<NavDirections> = _navigationEventDetail
+    private val _navigationEventDetail = SingleLiveEvent<Pair<Int, ContactsModel>>()
+    var navigationEventDetail: LiveData<Pair<Int, ContactsModel>> = _navigationEventDetail
 
     fun initDataBase() {
         initDataBase(repository.readContacts())
@@ -58,11 +59,12 @@ class ContactsViewModel(private val repository: ContactsRepository) : ViewModel(
         }
     }
 
-    fun goToDetailFragmentNavigate(contact: ContactsModel){
-        //_navigationEventDetail.value = ContactsFragmentDirections.actionContactsFragmentToDetailFragment(contact)
+    fun goToDetailFragmentNavigate(contact: ContactsModel) {
+        _navigationEventDetail.value =
+            Pair(R.id.action_viewPagerFragment_to_detailFragment, contact)
     }
 
     fun goBack() {
-        //_navigationEvent.value = ContactsFragmentDirections.actionContactsFragmentToProfileFragment()
+        _navigationEvent.value = 0
     }
 }

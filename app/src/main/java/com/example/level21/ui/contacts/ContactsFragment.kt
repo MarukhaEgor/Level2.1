@@ -4,9 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
+import com.example.level21.R
 import com.example.level21.R.id.mainNavHostFragment
 import com.example.level21.base.BaseFragment
 import com.example.level21.data.models.ContactsModel
@@ -57,8 +62,8 @@ class ContactsFragment(
             if (contacts.isEmpty()) viewModel.initDataBase()
             contacts.let { rvAdapter.submitList(it) }
         }
-        viewModel.navigationEvent.observe(viewLifecycleOwner, ::navigate)
-        viewModel.navigationEventDetail.observe(viewLifecycleOwner, ::navigate)
+        viewModel.navigationEvent.observe(viewLifecycleOwner, ::navigateToProfile)
+        viewModel.navigationEventDetail.observe(viewLifecycleOwner, ::navigateToDetail)
     }
 
     private fun initRv() {
@@ -75,24 +80,35 @@ class ContactsFragment(
     }
 
     private fun navigateDetailTransactions(contact: ContactsModel) {
-        val bundle = Bundle()
-        bundle.putParcelable("contact", contact)
-
         val detailFragment = DetailFragment()
-        detailFragment.arguments = bundle
-
-        parentFragmentManager
+        detailFragment.arguments = addToBundle(contact)
+        requireActivity().supportFragmentManager
             .beginTransaction()
             .replace(mainNavHostFragment, detailFragment)
+            .addToBackStack(null)
             .commit()
+    }
+
+    private fun navigateToDetail(pair: Pair<Int, ContactsModel>) {
+        findNavController().navigate(pair.first, addToBundle(contact = pair.second))
+    }
+
+    private fun addToBundle(contact: ContactsModel): Bundle {
+        return Bundle().apply { putParcelable("contact", contact) }
     }
 
     private fun showDetail(contact: ContactsModel) {
         if (GlobalConstants.IF_NAV_TRANSACTION) {
+            addToBundle(contact)
             viewModel.goToDetailFragmentNavigate(contact)
         } else {
             navigateDetailTransactions(contact)
         }
+    }
+
+    private fun navigateToProfile(direction: Int) {
+        val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
+        viewPager?.currentItem = direction
     }
 
     private fun deleteItem(position: Int) = viewModel.deleteItem(position)

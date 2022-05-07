@@ -41,15 +41,7 @@ class ProfileFragment(
 
     override fun setListeners() {
         binding.btnProfileActivityViewContact.setOnClickListener {
-            if (ContextCompat.checkSelfPermission(
-                    requireContext(),
-                    Manifest.permission.READ_CONTACTS
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
                 requestPermission.launch(Manifest.permission.READ_CONTACTS)
-            } else {
-                viewModel.viewContacts()
-            }
         }
     }
 

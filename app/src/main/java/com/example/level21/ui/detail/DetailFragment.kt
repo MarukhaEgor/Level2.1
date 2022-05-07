@@ -1,15 +1,15 @@
 package com.example.level21.ui.detail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import com.example.level21.base.BaseFragment
 import com.example.level21.data.models.ContactsModel
 import com.example.level21.databinding.DetailFragmentBinding
-import com.example.level21.databinding.ProfileFragmentBinding
-import com.example.level21.ui.profile.ProfileViewModel
+import com.example.level21.ui.contacts.ContactsFragment
 import com.example.level21.utils.extensions.loadCircleImage
 import org.koin.android.ext.android.inject
 
@@ -41,7 +41,23 @@ class DetailFragment(
 
     override fun setObservers() = viewModel.navigationEvent.observe(viewLifecycleOwner, ::navigate)
     override fun setListeners() = binding.icArrowBack.setOnClickListener {
-        viewModel.goBack()
+        requireActivity().onBackPressed()
+        //viewModel.goBack()
     }
+
+
+
+//    private fun navigateToContacts(page: Int){
+//        val contactsFragment = ContactsFragment()
+//        contactsFragment.arguments = addToBundle(page)
+//    }
+//
+//    private fun navigateToContacts(direction: NavDirections){
+//        findNavController().navigate(direction)
+//    }
+//
+//    private fun addToBundle(page: Int): Bundle {
+//        return Bundle().apply { putInt("page", page) }
+//    }
 
 }
