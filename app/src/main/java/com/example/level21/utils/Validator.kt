@@ -4,9 +4,7 @@ import android.util.Patterns
 
 object Validator {
 
-    fun isValidData(email: String, pass: String): Boolean {
-        return isValidMail(email) && isValidPass(pass)
-    }
+    fun isValidData(email: String, pass: String): Boolean = isValidMail(email) && isValidPass(pass)
 
     fun isValidMail(email: String): Boolean {
         if (email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches() && email.contains(
@@ -22,5 +20,4 @@ object Validator {
         }
         return false
     }
-
 }

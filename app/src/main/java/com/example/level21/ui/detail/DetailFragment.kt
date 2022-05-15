@@ -41,23 +41,6 @@ class DetailFragment(
 
     override fun setObservers() = viewModel.navigationEvent.observe(viewLifecycleOwner, ::navigate)
     override fun setListeners() = binding.icArrowBack.setOnClickListener {
-        requireActivity().onBackPressed()
-        //viewModel.goBack()
+        viewModel.goBack(requireActivity())
     }
-
-
-
-//    private fun navigateToContacts(page: Int){
-//        val contactsFragment = ContactsFragment()
-//        contactsFragment.arguments = addToBundle(page)
-//    }
-//
-//    private fun navigateToContacts(direction: NavDirections){
-//        findNavController().navigate(direction)
-//    }
-//
-//    private fun addToBundle(page: Int): Bundle {
-//        return Bundle().apply { putInt("page", page) }
-//    }
-
 }

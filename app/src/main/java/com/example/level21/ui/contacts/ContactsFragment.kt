@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,10 +31,12 @@ class ContactsFragment(
 
     private val viewModel: ContactsViewModel by inject()
 
+    private var positionView = 0
+
     private val rvAdapter: Adapter by lazy {
         Adapter({ position -> deleteItem(position) }
-        ) { contact ->
-            showDetail(contact)
+        ) {
+            showDetail(it)
         }
     }
 
@@ -49,6 +49,22 @@ class ContactsFragment(
             icArrowBack.setOnClickListener {
                 viewModel.goBack()
             }
+            fabContactsUp.setOnClickListener {
+                rvContactsList.smoothScrollToPosition(0)
+            }
+        }
+    }
+
+    private fun setFabButton() {
+        with(binding) {
+            rvContactsList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    if ((recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() > 0)
+                        fabContactsUp.show()
+                    else fabContactsUp.hide()
+                }
+            })
         }
     }
 
@@ -77,6 +93,7 @@ class ContactsFragment(
             )
         )
         ItemTouchHelper(SwipeToDel(rvAdapter)).apply { attachToRecyclerView(binding.rvContactsList) }
+        setFabButton()
     }
 
     private fun navigateDetailTransactions(contact: ContactsModel) {

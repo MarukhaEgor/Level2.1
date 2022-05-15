@@ -70,6 +70,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/icArrowBack" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabContactsUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/main_orange"
+            android:layout_margin="@dimen/main_paddings_16"
+            app:tint="@android:color/white"
+            app:borderWidth="0dp"
+            app:srcCompat="@drawable/ic_arrow_up"
+            app:layout_anchor="@id/rvContactsList"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvContactsList"
             android:layout_width="match_parent"

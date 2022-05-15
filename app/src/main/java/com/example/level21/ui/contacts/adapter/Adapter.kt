@@ -14,6 +14,7 @@ import com.example.level21.utils.extensions.loadCircleImage
 class Adapter(
     private val deleteItem: (position: Int) -> Unit,
     private val showDetail: (contact: ContactsModel) -> Unit,
+
 ) :
     ListAdapter<ContactsEntity, Adapter.ContactsViewHolder>(DiffUtils()) {
 
@@ -43,6 +44,9 @@ class Adapter(
             }
             binding.ivDelBtn.setOnClickListener {
                 delItem(adapterPosition)
+            }
+            binding.root.setOnLongClickListener{
+                true
             }
         }
     }
