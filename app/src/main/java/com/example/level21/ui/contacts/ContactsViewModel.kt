@@ -64,6 +64,14 @@ class ContactsViewModel(private val repository: ContactsRepository) : ViewModel(
             Pair(R.id.action_viewPagerFragment_to_detailFragment, contact)
     }
 
+    fun deleteItems(list: MutableList<ContactsEntity>?){
+        if (list != null) {
+            for (it in list){
+                deleteItemFromDB(it)
+            }
+        }
+    }
+
     fun goBack() {
         _navigationEvent.value = 0
     }

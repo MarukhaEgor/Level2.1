@@ -78,7 +78,21 @@
             android:layout_margin="@dimen/main_paddings_16"
             app:tint="@android:color/white"
             app:borderWidth="0dp"
-            app:srcCompat="@drawable/ic_arrow_up"
+            android:src="@drawable/ic_arrow_up"
+            app:layout_anchor="@id/rvContactsList"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabDelBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/main_orange"
+            android:layout_margin="@dimen/main_paddings_16"
+            app:tint="@android:color/white"
+            app:borderWidth="0dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_trash"
             app:layout_anchor="@id/rvContactsList"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

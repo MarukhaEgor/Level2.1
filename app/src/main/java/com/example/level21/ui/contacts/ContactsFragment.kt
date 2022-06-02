@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,13 +31,26 @@ class ContactsFragment(
 ) : BaseFragment<ContactsFragmentBinding>() {
 
     private val viewModel: ContactsViewModel by inject()
-
-    private var positionView = 0
-
     private val rvAdapter: Adapter by lazy {
-        Adapter({ position -> deleteItem(position) }
-        ) {
-            showDetail(it)
+        Adapter(
+            deleteItem = { position -> deleteItem(position) },
+            showDetail = { showDetail(it) },
+            setDelView = { setDelView(it) }
+        )
+    }
+
+    private fun setDelView(it: Boolean) {
+        if (it) {
+            binding.apply {
+                fabContactsUp.visibility = View.GONE
+                fabDelBtn.visibility = View.VISIBLE
+            }
+        }
+        else {
+            binding.apply {
+                fabContactsUp.visibility = View.VISIBLE
+                fabDelBtn.visibility = View.GONE
+            }
         }
     }
 
@@ -51,6 +65,10 @@ class ContactsFragment(
             }
             fabContactsUp.setOnClickListener {
                 rvContactsList.smoothScrollToPosition(0)
+            }
+            fabDelBtn.setOnClickListener {
+                viewModel.deleteItems(rvAdapter.delItems())
+                rvAdapter.clearList()
             }
         }
     }
