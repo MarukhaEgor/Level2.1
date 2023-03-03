@@ -11,110 +11,115 @@
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/topCl"
+            android:id="@+id/clTop"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/main_background"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bottomCl"
+            app:layout_constraintTop_toBottomOf="@+id/clBottom"
             app:layout_constraintHeight_percent="0.5">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/profileActivitySettingsTv"
+                android:id="@+id/tvProfileActivitySettings"
                 style="@style/settings_label_style"
                 android:text="@string/profile_view_settings"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/ProfileActivityAvatarImv"
+                android:id="@+id/ivProfileAvatar"
                 style="@style/profile_avatar"
-                android:src="@drawable/img"
+                android:src="@drawable/avatar_img"
                 app:layout_constraintHeight_percent="0.50"
+                app:layout_constraintBottom_toTopOf="@+id/tvProfileActivityName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/profileActivitySettingsTv"  />
+                app:layout_constraintTop_toBottomOf="@id/tvProfileActivitySettings"  />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/profileActivityNameTv"
+                android:id="@+id/tvProfileActivityName"
                 style="@style/profile_name_Style"
                 android:text="@string/profile_view_name"
-                app:layout_constraintBottom_toTopOf="@+id/profileActivityProffTv"
-                app:layout_constraintEnd_toEndOf="@+id/ProfileActivityAvatarImv"
-                app:layout_constraintStart_toStartOf="@+id/ProfileActivityAvatarImv"
-                app:layout_constraintTop_toBottomOf="@+id/ProfileActivityAvatarImv" />
+                app:layout_constraintBottom_toTopOf="@+id/tvProfileCarrier"
+                app:layout_constraintEnd_toEndOf="@+id/ivProfileAvatar"
+                app:layout_constraintStart_toStartOf="@+id/ivProfileAvatar"
+                app:layout_constraintTop_toBottomOf="@+id/ivProfileAvatar" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/profileActivityProffTv"
+                android:id="@+id/tvProfileCarrier"
                 style="@style/profile_data_style"
                 android:text="@string/profile_view_profession"
-                app:layout_constraintBottom_toTopOf="@+id/profileActivityAdrsTv"
-                app:layout_constraintEnd_toEndOf="@+id/profileActivityNameTv"
-                app:layout_constraintStart_toStartOf="@+id/profileActivityNameTv"
-                app:layout_constraintTop_toBottomOf="@+id/profileActivityNameTv" />
+                app:layout_constraintBottom_toTopOf="@+id/tvDetailAddress"
+                app:layout_constraintEnd_toEndOf="@+id/tvProfileActivityName"
+                app:layout_constraintStart_toStartOf="@+id/tvProfileActivityName"
+                app:layout_constraintTop_toBottomOf="@+id/tvProfileActivityName" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/profileActivityAdrsTv"
+                android:id="@+id/tvDetailAddress"
                 style="@style/profile_data_style"
                 android:text="@string/profile_view_adress"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/profileActivityNameTv"
-                app:layout_constraintStart_toStartOf="@+id/profileActivityNameTv"
-                app:layout_constraintTop_toBottomOf="@+id/profileActivityProffTv" />
+                app:layout_constraintEnd_toEndOf="@+id/tvProfileCarrier"
+                app:layout_constraintStart_toStartOf="@+id/tvProfileCarrier"
+                app:layout_constraintTop_toBottomOf="@+id/tvProfileCarrier" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/bottomCl"
+            android:id="@+id/clBottom"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHeight_percent="0.5"
-            app:layout_constraintTop_toBottomOf="@+id/topCl">
+            app:layout_constraintTop_toBottomOf="@+id/clTop">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/profileActivityEditProfileBtn"
+                android:id="@+id/btnProfileActivityEditProfile"
                 style="@style/main_btn_with_border_style"
                 android:letterSpacing="0"
                 android:text="@string/profile_view_edit_btn"
-                app:layout_constraintBottom_toTopOf="@id/profileActivityViewContactBtn"
+                app:layout_constraintBottom_toTopOf="@id/btnProfileActivityViewContact"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/profileActivityViewContactBtn"
+                android:id="@+id/btnProfileActivityViewContact"
                 style="@style/profile_activity_btn"
                 android:text="@string/profile_view_contacts_btn"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/profileActivityFbFab"
-                style="@style/profile_soc_btn"
-                android:src="@drawable/fb_fab"
-                app:layout_constraintBottom_toTopOf="@+id/profileActivityEditProfileBtn"
-                app:layout_constraintEnd_toStartOf="@+id/profileActivityLinkInFab"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icFB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_fb"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/bottomCl" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/profileActivityLinkInFab"
-                style="@style/profile_soc_btn"
-                android:src="@drawable/linkin_fab"
-                app:layout_constraintBottom_toBottomOf="@+id/profileActivityFbFab"
-                app:layout_constraintEnd_toStartOf="@+id/ProfileActivityVkFab"
-                app:layout_constraintStart_toEndOf="@+id/profileActivityFbFab" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/ProfileActivityVkFab"
-                style="@style/profile_soc_btn"
-                android:src="@drawable/vk_fab"
-                app:layout_constraintBottom_toBottomOf="@+id/profileActivityLinkInFab"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/btnProfileActivityEditProfile"
+                app:layout_constraintEnd_toStartOf="@+id/icIn"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_in"
+                app:layout_constraintStart_toEndOf="@id/icFB"
+                app:layout_constraintTop_toTopOf="@id/icFB"
+                app:layout_constraintBottom_toBottomOf="@id/icFB"
+                app:layout_constraintEnd_toStartOf="@id/icVk"
+                />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icVk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_vk"
+                app:layout_constraintStart_toEndOf="@id/icIn"
+                app:layout_constraintTop_toTopOf="@id/icIn"
+                app:layout_constraintBottom_toBottomOf="@id/icIn"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/profileActivityLinkInFab" />
+                />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

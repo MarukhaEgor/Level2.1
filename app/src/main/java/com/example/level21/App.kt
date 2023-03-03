@@ -1,8 +1,7 @@
 package com.example.level21
 
 import android.app.Application
-import com.example.level21.di.repository
-import com.example.level21.di.viewModel
+import com.example.level21.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -15,7 +14,7 @@ class App: Application() {
     private fun koinStart() {
         startKoin {
             androidContext(this@App)
-            modules(viewModel, repository)
+            modules(appModules)
         }
     }
 }

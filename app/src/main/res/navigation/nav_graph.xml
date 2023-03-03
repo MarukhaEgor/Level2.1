@@ -3,20 +3,59 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/signUpFragment">
+    app:startDestination="@id/viewPagerFragment">
 
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.level21.ui.profile.ProfileFragment"
-        android:label="profile_fragment"
-        tools:layout="@layout/profile_fragment" />
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.level21.ui.register.SignUpFragment"
         android:label="sign_up_fragment"
         tools:layout="@layout/sign_up_fragment" >
         <action
-            android:id="@+id/action_signUpFragment_to_profileFragment"
+            android:id="@+id/action_signUpFragment_to_viewPagerFragment"
+            app:destination="@id/viewPagerFragment" />
+        <argument android:name="Name" />
+        <argument android:name="SecondName" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="com.example.level21.ui.viewPager.ViewPagerFragment"
+        android:label="fragment_view_pager"
+        tools:layout="@layout/fragment_view_pager" >
+        <action
+            android:id="@+id/action_viewPagerFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <argument
+            android:name="page"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.level21.ui.detail.DetailFragment"
+        android:label="detail_fragment"
+        tools:layout="@layout/detail_fragment" >
+        <argument
+            android:name="contact"
+            app:argType="com.example.level21.data.models.ContactsModel" />
+        <action
+            android:id="@+id/action_detailFragment_to_viewPagerFragment"
+            app:destination="@id/viewPagerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="com.example.level21.ui.contacts.ContactsFragment"
+        android:label="ContactsFragment" >
+        <action
+            android:id="@+id/action_contactsFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.level21.ui.profile.ProfileFragment"
+        android:label="profile_fragment"
+        tools:layout="@layout/profile_fragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
     </fragment>
 </navigation>
