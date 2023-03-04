@@ -14,7 +14,7 @@
 2. Для ввода данных рекомендуется использовать клавиатуру Gboard
 
 ## **Подробное описание функционала:**
-1. [Регистрация/авторизация пользователя](docs/instructions/RegistrationAuthorization/RegistrationAuthorization.md).
+1. [Регистрация/авторизация пользователя](docs/instructions/RegistrationAuthorization/Registration.md).
     1. Профиль Пользователя
 2. Профиль контакта
     1. Добавление нового профиля контакта
