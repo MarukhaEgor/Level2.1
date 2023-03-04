@@ -14,12 +14,12 @@
 2. Для ввода данных рекомендуется использовать клавиатуру Gboard
 
 ## **Подробное описание функционала:**
-1. [Регистрация](docs/instructions/RegistrationAuthorization/Registration.md)/[авторизация](docs/instructions/RegistrationAuthorization/Authorization.md) пользователя
+1. [Регистрация](docs/instructions/RegistrationAuthorization/Registration.md)/[Авторизация](docs/instructions/RegistrationAuthorization/Authorization.md) пользователя
     1. Профиль Пользователя
 2. Профиль контакта
     1. Просмотр списка контактов
 3. Список контактов
-    1. Удаление контакта
+    1. [Удаление контакта](docs/instructions/Delete%20User/DeleteUser.md)
     1. Добавление контакта
     
 
